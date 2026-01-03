@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LogOut, LayoutDashboard, Package, Users } from 'lucide-react';
+import { LogOut, LayoutDashboard, Package, Users, Image } from 'lucide-react';
 import { SignOutButton } from '@/components/auth/sign-out-button';
 
 export default async function AdminLayout({
@@ -30,6 +30,13 @@ export default async function AdminLayout({
                 >
                   <Package className="w-4 h-4" />
                   Products
+                </Link>
+                <Link
+                  href="/admin/slides"
+                  className="flex items-center gap-2 text-sm hover:text-slate-200 transition-colors"
+                >
+                  <Image className="w-4 h-4" />
+                  Hero Slides
                 </Link>
                 <Link
                   href="/admin/leads"

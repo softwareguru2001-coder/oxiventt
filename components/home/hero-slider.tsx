@@ -26,45 +26,55 @@ const toBase64 = (str: string) =>
     : window.btoa(str);
 
 interface Slide {
-  id: number;
-  image: string;
+  id: string;
   title: string;
   subtitle: string;
+  image_url: string;
   gradient: string;
+  display_order: number;
 }
 
-const slides: Slide[] = [
+interface HeroSliderProps {
+  slides?: Slide[];
+}
+
+const defaultSlides: Slide[] = [
   {
-    id: 1,
-    image: 'https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    id: '1',
     title: 'Industrial Excellence in Ventilation',
     subtitle: 'High-performance fans engineered for demanding environments',
+    image_url: 'https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?auto=compress&cs=tinysrgb&w=1920',
     gradient: 'from-industrial-900/90 via-industrial-800/80 to-transparent',
+    display_order: 1,
   },
   {
-    id: 2,
-    image: 'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    id: '2',
     title: 'Cutting-Edge Air Movement Technology',
     subtitle: 'Precision-engineered solutions for optimal airflow and energy efficiency',
+    image_url: 'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=1920',
     gradient: 'from-blue-900/90 via-blue-800/80 to-transparent',
+    display_order: 2,
   },
   {
-    id: 3,
-    image: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    id: '3',
     title: 'Built for Industrial Strength',
     subtitle: 'Robust construction meets advanced aerodynamic design',
+    image_url: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=1920',
     gradient: 'from-slate-900/90 via-slate-800/80 to-transparent',
+    display_order: 3,
   },
   {
-    id: 4,
-    image: 'https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    id: '4',
     title: 'Trusted Across Industries',
     subtitle: 'Delivering reliable performance for manufacturing, warehousing, and more',
+    image_url: 'https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=1920',
     gradient: 'from-gray-900/90 via-gray-800/80 to-transparent',
+    display_order: 4,
   },
 ];
 
-export function HeroSlider() {
+export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
+  const slides = propSlides && propSlides.length > 0 ? propSlides : defaultSlides;
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -100,7 +110,7 @@ export function HeroSlider() {
         >
           <div className="absolute inset-0 overflow-hidden">
             <Image
-              src={slides[current].image}
+              src={slides[current].image_url}
               alt={slides[current].title}
               fill
               priority={current === 0}
