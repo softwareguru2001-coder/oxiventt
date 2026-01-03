@@ -40,6 +40,21 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { data: adminUser, error: adminError } = await supabase
+      .from('admin_users')
+      .select('role')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (adminError) {
+      console.error('Admin check error:', adminError);
+      return NextResponse.json({ error: 'Failed to verify admin status' }, { status: 500 });
+    }
+
+    if (!adminUser || adminUser.role !== 'admin') {
+      return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
+    }
+
     const body = await request.json();
 
     const { data, error } = await supabase
@@ -52,12 +67,18 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase error:', error);
+      throw error;
+    }
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to update slide:', error);
-    return NextResponse.json({ error: 'Failed to update slide' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to update slide', details: error.message },
+      { status: 500 }
+    );
   }
 }
 
@@ -70,16 +91,37 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { data: adminUser, error: adminError } = await supabase
+      .from('admin_users')
+      .select('role')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (adminError) {
+      console.error('Admin check error:', adminError);
+      return NextResponse.json({ error: 'Failed to verify admin status' }, { status: 500 });
+    }
+
+    if (!adminUser || adminUser.role !== 'admin') {
+      return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
+    }
+
     const { error } = await supabase
       .from('hero_slides')
       .delete()
       .eq('id', params.id);
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase error:', error);
+      throw error;
+    }
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to delete slide:', error);
-    return NextResponse.json({ error: 'Failed to delete slide' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to delete slide', details: error.message },
+      { status: 500 }
+    );
   }
 }

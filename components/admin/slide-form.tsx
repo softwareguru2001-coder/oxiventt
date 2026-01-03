@@ -75,11 +75,14 @@ export function SlideForm({ slideId }: SlideFormProps) {
       if (response.ok) {
         router.push('/admin/slides');
       } else {
-        alert('Failed to save slide');
+        const errorData = await response.json();
+        const errorMessage = errorData.details || errorData.error || 'Failed to save slide';
+        console.error('Server error:', errorData);
+        alert(`Failed to save slide: ${errorMessage}`);
       }
     } catch (error) {
       console.error('Failed to save slide:', error);
-      alert('Failed to save slide');
+      alert('Failed to save slide. Please check the console for details.');
     } finally {
       setLoading(false);
     }

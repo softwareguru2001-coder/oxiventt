@@ -33,6 +33,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { data: adminUser, error: adminError } = await supabase
+      .from('admin_users')
+      .select('role')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (adminError) {
+      console.error('Admin check error:', adminError);
+      return NextResponse.json({ error: 'Failed to verify admin status' }, { status: 500 });
+    }
+
+    if (!adminUser || adminUser.role !== 'admin') {
+      return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
+    }
+
     const body = await request.json();
     const { title, subtitle, image_url, gradient, display_order, is_active } = body;
 
@@ -49,11 +64,17 @@ export async function POST(request: NextRequest) {
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase error:', error);
+      throw error;
+    }
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to create slide:', error);
-    return NextResponse.json({ error: 'Failed to create slide' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to create slide', details: error.message },
+      { status: 500 }
+    );
   }
 }
