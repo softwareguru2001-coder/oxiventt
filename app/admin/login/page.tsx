@@ -31,6 +31,14 @@ export default function AdminLoginPage() {
         throw new Error('No user returned from login');
       }
 
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        throw new Error('Session not established');
+      }
+
       const { data: adminCheck, error: adminError } = await supabase
         .from('admin_users')
         .select('role')
@@ -38,7 +46,8 @@ export default function AdminLoginPage() {
         .maybeSingle();
 
       if (adminError) {
-        throw new Error('Failed to verify admin access');
+        console.error('Admin check error details:', adminError);
+        throw new Error(`Admin verification failed: ${adminError.message}`);
       }
 
       if (!adminCheck) {
@@ -46,8 +55,7 @@ export default function AdminLoginPage() {
         throw new Error('You do not have admin access');
       }
 
-      router.push('/admin');
-      router.refresh();
+      window.location.href = '/admin';
     } catch (err: any) {
       setError(err.message || 'Failed to sign in');
       setLoading(false);
