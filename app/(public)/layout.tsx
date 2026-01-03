@@ -38,12 +38,6 @@ export default function PublicLayout({
                 Products
               </Link>
               <Link
-                href="/about"
-                className="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200"
-              >
-                About
-              </Link>
-              <Link
                 href="/contact"
                 className="ml-2 px-7 py-3 text-sm font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg"
               >

@@ -11,7 +11,6 @@ export function MobileNav() {
   const menuItems = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/products', label: 'Products', icon: Package },
-    { href: '/about', label: 'About', icon: Info },
     { href: '/contact', label: 'Contact', icon: Phone },
   ];
 
