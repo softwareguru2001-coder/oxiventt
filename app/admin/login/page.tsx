@@ -28,8 +28,7 @@ export default function AdminLoginPage() {
       if (authError) throw authError;
 
       if (authData.user) {
-        router.push('/admin');
-        router.refresh();
+        window.location.href = '/admin';
       }
     } catch (err: any) {
       setError(err.message || 'Failed to sign in');
