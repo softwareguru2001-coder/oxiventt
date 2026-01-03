@@ -27,12 +27,29 @@ export default function AdminLoginPage() {
 
       if (authError) throw authError;
 
-      if (authData.user) {
-        window.location.href = '/admin';
+      if (!authData.user) {
+        throw new Error('No user returned from login');
       }
+
+      const { data: adminCheck, error: adminError } = await supabase
+        .from('admin_users')
+        .select('role')
+        .eq('id', authData.user.id)
+        .maybeSingle();
+
+      if (adminError) {
+        throw new Error('Failed to verify admin access');
+      }
+
+      if (!adminCheck) {
+        await supabase.auth.signOut();
+        throw new Error('You do not have admin access');
+      }
+
+      router.push('/admin');
+      router.refresh();
     } catch (err: any) {
       setError(err.message || 'Failed to sign in');
-    } finally {
       setLoading(false);
     }
   };
