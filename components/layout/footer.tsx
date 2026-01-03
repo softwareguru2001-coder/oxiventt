@@ -6,28 +6,20 @@ import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'luc
 
 const footerLinks = {
   products: [
+    { name: 'All Products', href: '/products' },
     { name: 'Axial Fans', href: '/products?category=axial' },
     { name: 'Centrifugal Fans', href: '/products?category=centrifugal' },
     { name: 'Exhaust Systems', href: '/products?category=exhaust' },
-    { name: 'HVAC Solutions', href: '/products?category=hvac' },
   ],
   company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Our Team', href: '/about#team' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Certifications', href: '/certifications' },
+    { name: 'Home', href: '/' },
+    { name: 'Products', href: '/products' },
+    { name: 'Contact Us', href: '/contact' },
   ],
   support: [
-    { name: 'Contact Us', href: '/contact' },
-    { name: 'Documentation', href: '/docs' },
-    { name: 'Installation Guide', href: '/installation' },
-    { name: 'Warranty', href: '/warranty' },
-  ],
-  legal: [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Cookie Policy', href: '/cookies' },
-    { name: 'Compliance', href: '/compliance' },
+    { name: 'Get Quote', href: '/contact' },
+    { name: 'WhatsApp', href: 'https://wa.me/911234567890' },
+    { name: 'Email Us', href: 'mailto:info@industrialfans.com' },
   ],
 };
 
@@ -44,8 +36,8 @@ export function Footer() {
   return (
     <footer className="bg-gradient-to-br from-industrial-900 via-industrial-800 to-industrial-900 text-white">
       <div className="container mx-auto px-4 md:px-8 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -156,12 +148,23 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
-                  >
-                    {link.name}
-                  </Link>
+                  {link.href.startsWith('http') || link.href.startsWith('mailto:') ? (
+                    <a
+                      href={link.href}
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -187,15 +190,6 @@ export function Footer() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="flex flex-wrap justify-center gap-6"
             >
-              {footerLinks.legal.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm text-white/60 hover:text-white transition-colors duration-300"
-                >
-                  {link.name}
-                </Link>
-              ))}
               <Link
                 href="/admin/login"
                 className="text-sm text-white/60 hover:text-white transition-colors duration-300"
