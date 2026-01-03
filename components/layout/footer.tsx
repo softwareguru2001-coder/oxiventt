@@ -1,0 +1,213 @@
+'use client';
+
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+
+const footerLinks = {
+  products: [
+    { name: 'Axial Fans', href: '/products?category=axial' },
+    { name: 'Centrifugal Fans', href: '/products?category=centrifugal' },
+    { name: 'Exhaust Systems', href: '/products?category=exhaust' },
+    { name: 'HVAC Solutions', href: '/products?category=hvac' },
+  ],
+  company: [
+    { name: 'About Us', href: '/about' },
+    { name: 'Our Team', href: '/about#team' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'Certifications', href: '/certifications' },
+  ],
+  support: [
+    { name: 'Contact Us', href: '/contact' },
+    { name: 'Documentation', href: '/docs' },
+    { name: 'Installation Guide', href: '/installation' },
+    { name: 'Warranty', href: '/warranty' },
+  ],
+  legal: [
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Terms of Service', href: '/terms' },
+    { name: 'Cookie Policy', href: '/cookies' },
+    { name: 'Compliance', href: '/compliance' },
+  ],
+};
+
+const socialLinks = [
+  { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
+  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+];
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-gradient-to-br from-industrial-900 via-industrial-800 to-industrial-900 text-white">
+      <div className="container mx-auto px-4 md:px-8 py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+          <div className="lg:col-span-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-2xl font-bold mb-4">Industrial Fans</h3>
+              <p className="text-white/70 mb-6 leading-relaxed">
+                Leading manufacturer of high-performance industrial ventilation solutions.
+                Engineering excellence since 1999.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-3 text-sm text-white/70 hover:text-white/90 transition-colors">
+                  <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <span>123 Industrial Area, Phase 4, Mumbai, Maharashtra 400001</span>
+                </div>
+                <a
+                  href="tel:+911234567890"
+                  className="flex items-center gap-3 text-sm text-white/70 hover:text-white/90 transition-colors"
+                >
+                  <Phone className="w-5 h-5 flex-shrink-0" />
+                  <span>+91 12345 67890</span>
+                </a>
+                <a
+                  href="mailto:info@industrialfans.com"
+                  className="flex items-center gap-3 text-sm text-white/70 hover:text-white/90 transition-colors"
+                >
+                  <Mail className="w-5 h-5 flex-shrink-0" />
+                  <span>info@industrialfans.com</span>
+                </a>
+              </div>
+
+              <div className="flex gap-3">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-10 h-10 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-white/90">
+              Products
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.products.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-white/90">
+              Company
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-white/90">
+              Support
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.support.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+
+        <div className="pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-sm text-white/60"
+            >
+              © {currentYear} Industrial Fans. All rights reserved.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap justify-center gap-6"
+            >
+              {footerLinks.legal.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm text-white/60 hover:text-white transition-colors duration-300"
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <Link
+                href="/admin/login"
+                className="text-sm text-white/60 hover:text-white transition-colors duration-300"
+              >
+                Admin Login
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+    </footer>
+  );
+}
