@@ -14,13 +14,13 @@ export default async function HomePage() {
     const supabase = supabaseServerClient();
 
     const [productsResult, slidesResult] = await Promise.all([
-      supabase
+      (supabase as any)
         .from('products')
         .select('*')
         .eq('featured', true)
         .order('created_at', { ascending: false })
         .limit(4),
-      supabase
+      (supabase as any)
         .from('hero_slides')
         .select('*')
         .eq('is_active', true)
@@ -30,7 +30,7 @@ export default async function HomePage() {
     if (productsResult.error) throw productsResult.error;
     if (slidesResult.error) throw slidesResult.error;
 
-    featuredProducts = (productsResult.data || []).map((product) => ({
+    featuredProducts = (productsResult.data || []).map((product: any) => ({
       ...product,
       available_sizes: product.sizes || [],
       brochure_url: product.brochure_path

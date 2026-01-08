@@ -16,7 +16,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
       .from('hero_slides')
       .select('*')
       .eq('id', params.id)
@@ -51,13 +51,13 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Failed to verify admin status' }, { status: 500 });
     }
 
-    if (!adminUser || adminUser.role !== 'admin') {
+    if (!adminUser || (adminUser as any).role !== 'admin') {
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
     const body = await request.json();
 
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
       .from('hero_slides')
       .update({
         ...body,
@@ -102,11 +102,11 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Failed to verify admin status' }, { status: 500 });
     }
 
-    if (!adminUser || adminUser.role !== 'admin') {
+    if (!adminUser || (adminUser as any).role !== 'admin') {
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
-    const { error } = await supabase
+    const { error } = await (supabase as any)
       .from('hero_slides')
       .delete()
       .eq('id', params.id);

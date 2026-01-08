@@ -114,7 +114,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     }
 
     const productData = {
-      ...product,
+      ...(product as any),
       specifications: (product as any).specs || {},
       available_sizes: (product as any).sizes || [],
       brochure_url: (product as any).brochure_path

@@ -46,7 +46,7 @@ export default async function ProductsPage({
     if (error) {
       console.error('Error fetching products:', error);
     } else if (data) {
-      products = data.map((product) => ({
+      products = data.map((product: any) => ({
         ...product,
         available_sizes: product.sizes || [],
         brochure_url: product.brochure_path
