@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-family)'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
@@ -20,6 +23,13 @@ const config: Config = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        'ds-none': 'var(--border-radius-none)',
+        'ds-sm': 'var(--border-radius-sm)',
+        'ds-md': 'var(--border-radius-md)',
+        'ds-lg': 'var(--border-radius-lg)',
+        'ds-xl': 'var(--border-radius-xl)',
+        'ds-2xl': 'var(--border-radius-2xl)',
+        'ds-full': 'var(--border-radius-full)',
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -35,10 +45,16 @@ const config: Config = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+          ds: 'var(--color-primary)',
+          'ds-dark': 'var(--color-primary-dark)',
+          'ds-light': 'var(--color-primary-light)',
+          'ds-lighter': 'var(--color-primary-lighter)',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
+          ds: 'var(--color-secondary)',
+          'ds-light': 'var(--color-secondary-light)',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
@@ -47,12 +63,41 @@ const config: Config = {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
+          ds: 'var(--color-accent)',
+          'ds-light': 'var(--color-accent-light)',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
+        success: {
+          DEFAULT: 'var(--color-success)',
+          light: 'var(--color-success-light)',
+        },
+        warning: {
+          DEFAULT: 'var(--color-warning)',
+          light: 'var(--color-warning-light)',
+        },
+        danger: {
+          DEFAULT: 'var(--color-danger)',
+          light: 'var(--color-danger-light)',
+        },
+        text: {
+          primary: 'var(--color-text-primary)',
+          secondary: 'var(--color-text-secondary)',
+          tertiary: 'var(--color-text-tertiary)',
+          light: 'var(--color-text-light)',
+          'light-secondary': 'var(--color-text-light-secondary)',
+          'light-tertiary': 'var(--color-text-light-tertiary)',
+        },
+        bg: {
+          dark: 'var(--color-dark-bg)',
+          light: 'var(--color-light-bg)',
+          card: 'var(--color-card-bg)',
+        },
         border: 'hsl(var(--border))',
+        'border-ds': 'var(--color-border)',
+        'border-dark': 'var(--color-border-dark)',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         chart: {
@@ -81,6 +126,14 @@ const config: Config = {
         '88': '22rem',
         '112': '28rem',
         '128': '32rem',
+        'ds-xs': 'var(--spacing-xs)',
+        'ds-sm': 'var(--spacing-sm)',
+        'ds-md': 'var(--spacing-md)',
+        'ds-lg': 'var(--spacing-lg)',
+        'ds-xl': 'var(--spacing-xl)',
+        'ds-xxl': 'var(--spacing-xxl)',
+        'ds-xxxl': 'var(--spacing-xxxl)',
+        'ds-huge': 'var(--spacing-huge)',
       },
       fontSize: {
         '2xs': '0.625rem',
@@ -90,12 +143,45 @@ const config: Config = {
         '6xl': '3.75rem',
         '7xl': '4.5rem',
         '8xl': '6rem',
+        'ds-h1': ['var(--font-size-h1)', { lineHeight: 'var(--line-height-h1)', letterSpacing: 'var(--letter-spacing-h1)', fontWeight: 'var(--font-weight-bold)' }],
+        'ds-h2': ['var(--font-size-h2)', { lineHeight: 'var(--line-height-h2)', letterSpacing: 'var(--letter-spacing-h2)', fontWeight: 'var(--font-weight-bold)' }],
+        'ds-h3': ['var(--font-size-h3)', { lineHeight: 'var(--line-height-h3)', letterSpacing: 'var(--letter-spacing-h3)', fontWeight: 'var(--font-weight-semibold)' }],
+        'ds-h4': ['var(--font-size-h4)', { lineHeight: 'var(--line-height-h4)', letterSpacing: 'var(--letter-spacing-h4)', fontWeight: 'var(--font-weight-semibold)' }],
+        'ds-h5': ['var(--font-size-h5)', { lineHeight: 'var(--line-height-h5)', letterSpacing: 'var(--letter-spacing-h5)', fontWeight: 'var(--font-weight-semibold)' }],
+        'ds-h6': ['var(--font-size-h6)', { lineHeight: 'var(--line-height-h6)', letterSpacing: 'var(--letter-spacing-h6)', fontWeight: 'var(--font-weight-semibold)' }],
+        'ds-body-lg': ['var(--font-size-body-large)', { lineHeight: 'var(--line-height-body-large)', letterSpacing: 'var(--letter-spacing-body)' }],
+        'ds-body': ['var(--font-size-body-medium)', { lineHeight: 'var(--line-height-body-medium)', letterSpacing: 'var(--letter-spacing-body)' }],
+        'ds-body-sm': ['var(--font-size-body-small)', { lineHeight: 'var(--line-height-body-small)', letterSpacing: 'var(--letter-spacing-body)' }],
+        'ds-caption': ['var(--font-size-caption)', { lineHeight: 'var(--line-height-caption)', letterSpacing: 'var(--letter-spacing-caption)', fontWeight: 'var(--font-weight-medium)' }],
+        'ds-button': ['var(--font-size-button)', { lineHeight: 'var(--line-height-button)', fontWeight: 'var(--font-weight-semibold)' }],
       },
       boxShadow: {
         'premium': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         'glow': '0 0 20px rgba(59, 130, 246, 0.5)',
         'glow-lg': '0 0 30px rgba(59, 130, 246, 0.6)',
         'inner-premium': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+        'elevation-1': 'var(--shadow-elevation-1)',
+        'elevation-2': 'var(--shadow-elevation-2)',
+        'elevation-3': 'var(--shadow-elevation-3)',
+        'elevation-4': 'var(--shadow-elevation-4)',
+      },
+      transitionDuration: {
+        fast: '200ms',
+        normal: '300ms',
+        slow: '400ms',
+      },
+      transitionTimingFunction: {
+        'ease-out-custom': 'cubic-bezier(0.33, 1, 0.68, 1)',
+        'ease-in-out-custom': 'cubic-bezier(0.65, 0, 0.35, 1)',
+      },
+      zIndex: {
+        dropdown: '1000',
+        sticky: '1020',
+        fixed: '1030',
+        'modal-backdrop': '1040',
+        modal: '1050',
+        popover: '1060',
+        tooltip: '1070',
       },
       backdropBlur: {
         xs: '2px',
