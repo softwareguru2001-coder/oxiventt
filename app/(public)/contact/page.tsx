@@ -35,10 +35,10 @@ export default function ContactPage() {
             </div>
             <h2 className="text-xl font-bold text-industrial-900 mb-3">Email</h2>
             <a
-              href="mailto:info@industrialfans.com"
+              href="mailto:info@oxiventt.com"
               className="text-blue-600 hover:text-blue-700 transition-colors font-medium"
             >
-              info@industrialfans.com
+              info@oxiventt.com
             </a>
           </div>
 
@@ -61,8 +61,8 @@ export default function ContactPage() {
             </div>
             <h2 className="text-xl font-bold text-industrial-900 mb-3">Address</h2>
             <p className="text-gray-600 leading-relaxed">
-              123 Industrial Area<br />
-              Mumbai, Maharashtra 400001<br />
+              202,203, Om Textile Park<br />
+              Surat-394101, Gujarat<br />
               India
             </p>
           </div>

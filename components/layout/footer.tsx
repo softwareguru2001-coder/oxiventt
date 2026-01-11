@@ -18,8 +18,8 @@ const footerLinks = {
   ],
   support: [
     { name: 'Get Quote', href: '/contact' },
-    { name: 'WhatsApp', href: 'https://wa.me/911234567890' },
-    { name: 'Email Us', href: 'mailto:info@industrialfans.com' },
+    { name: 'WhatsApp', href: 'https://wa.me/919099199000' },
+    { name: 'Email Us', href: 'mailto:info@oxiventt.com' },
   ],
 };
 
@@ -53,21 +53,21 @@ export function Footer() {
               <div className="space-y-3 mb-6">
                 <div className="flex items-start gap-3 text-sm text-white/70 hover:text-white/90 transition-colors">
                   <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <span>123 Industrial Area, Phase 4, Mumbai, Maharashtra 400001</span>
+                  <span>202,203, Om Textile Park, 394325, Surat, Surat-394101, Gujarat, India</span>
                 </div>
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+919099199000"
                   className="flex items-center gap-3 text-sm text-white/70 hover:text-white/90 transition-colors"
                 >
                   <Phone className="w-5 h-5 flex-shrink-0" />
-                  <span>+91 12345 67890</span>
+                  <span>+91 90991 99000</span>
                 </a>
                 <a
-                  href="mailto:info@industrialfans.com"
+                  href="mailto:info@oxiventt.com"
                   className="flex items-center gap-3 text-sm text-white/70 hover:text-white/90 transition-colors"
                 >
                   <Mail className="w-5 h-5 flex-shrink-0" />
-                  <span>info@industrialfans.com</span>
+                  <span>info@oxiventt.com</span>
                 </a>
               </div>
 
