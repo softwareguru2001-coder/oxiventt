@@ -4,9 +4,9 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with our team for inquiries, quotations, or support. We are here to help you find the perfect industrial fan solution.',
+  description: 'Get in touch with our team for inquiries, quotations, or support. We are here to help you find the perfect ventilation solution.',
   openGraph: {
-    title: 'Contact Us - Industrial Fans',
+    title: 'Contact Us - Oxiventt',
     description: 'Get in touch with our team for inquiries, quotations, or support.',
   },
 };

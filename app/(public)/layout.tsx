@@ -14,11 +14,11 @@ export default function PublicLayout({
           <div className="flex items-center justify-between h-18 md:h-22">
             <Link href="/" className="flex items-center gap-3 group">
               <div className="w-11 h-11 md:w-13 md:h-13 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <span className="text-white font-bold text-xl md:text-2xl">IF</span>
+                <span className="text-white font-bold text-xl md:text-2xl">OX</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-industrial-900 to-industrial-700 bg-clip-text text-transparent leading-none">
-                  Industrial Fans
+                  Oxiventt
                 </span>
                 <span className="text-xs text-gray-500 font-medium mt-0.5">Excellence in Ventilation</span>
               </div>

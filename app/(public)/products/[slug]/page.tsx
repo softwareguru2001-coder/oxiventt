@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
     const productData = product as any;
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
-    const title = `${productData.name} - Industrial Fans`;
+    const title = `${productData.name} - Oxiventt`;
     const description = productData.description
       ? productData.description.substring(0, 160)
       : `High-quality ${productData.name} available in various sizes and specifications.`;
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
   } catch (error) {
     console.error('Error generating metadata:', error);
     return {
-      title: 'Product - Industrial Fans',
+      title: 'Product - Oxiventt',
       description: 'View product details',
     };
   }

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Products',
   description: 'Browse our comprehensive range of industrial fans, exhaust fans, and ventilation solutions. Find the perfect fan for your industrial, commercial, or residential needs.',
   openGraph: {
-    title: 'Industrial Fans & Ventilation Solutions',
+    title: 'Oxiventt - Ventilation Solutions',
     description: 'Browse our comprehensive range of industrial fans, exhaust fans, and ventilation solutions.',
   },
 };
