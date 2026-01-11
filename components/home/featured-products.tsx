@@ -42,7 +42,7 @@ const item = {
 };
 
 export function FeaturedProducts({ products }: FeaturedProductsProps) {
-  const displayProducts = products.length > 0 ? products.slice(0, 4) : sampleProducts;
+  const displayProducts = products.slice(0, 4);
   const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
   const [selectedBrochure, setSelectedBrochure] = useState<{
     url: string;
@@ -145,19 +145,25 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
-        >
-          {displayProducts.map((product, index) => (
-            <motion.div key={product.id} variants={item}>
-              <ProductCard product={product} onBrochureClick={handleBrochureClick} />
-            </motion.div>
-          ))}
-        </motion.div>
+        {displayProducts.length > 0 ? (
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+          >
+            {displayProducts.map((product, index) => (
+              <motion.div key={product.id} variants={item}>
+                <ProductCard product={product} onBrochureClick={handleBrochureClick} />
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-xl text-gray-500">No featured products available at the moment.</p>
+          </div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -217,54 +223,3 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
     </section>
   );
 }
-
-const sampleProducts: Product[] = [
-  {
-    id: '1',
-    name: 'Heavy-Duty Axial Fan',
-    slug: 'heavy-duty-axial-fan',
-    sku: 'AX-5000',
-    category: 'Axial Fans',
-    short_description: 'High airflow capacity with energy-efficient motor technology',
-    price: 45000,
-    is_price_visible: true,
-    images: ['https://images.pexels.com/photos/257700/pexels-photo-257700.jpeg?auto=compress&cs=tinysrgb&w=800'],
-    featured: true,
-  },
-  {
-    id: '2',
-    name: 'Centrifugal Blower System',
-    slug: 'centrifugal-blower-system',
-    sku: 'CB-3000',
-    category: 'Centrifugal Fans',
-    short_description: 'Precision-engineered for high-pressure applications',
-    price: 68000,
-    is_price_visible: true,
-    images: ['https://images.pexels.com/photos/2760241/pexels-photo-2760241.jpeg?auto=compress&cs=tinysrgb&w=800'],
-    featured: true,
-  },
-  {
-    id: '3',
-    name: 'Industrial Exhaust Fan',
-    slug: 'industrial-exhaust-fan',
-    sku: 'EX-4500',
-    category: 'Exhaust Systems',
-    short_description: 'Robust construction for continuous operation in harsh conditions',
-    price: 52000,
-    is_price_visible: true,
-    images: ['https://images.pexels.com/photos/1108599/pexels-photo-1108599.jpeg?auto=compress&cs=tinysrgb&w=800'],
-    featured: true,
-  },
-  {
-    id: '4',
-    name: 'HVAC Air Handling Unit',
-    slug: 'hvac-air-handling-unit',
-    sku: 'AHU-7000',
-    category: 'HVAC Systems',
-    short_description: 'Complete climate control solution for large facilities',
-    price: 125000,
-    is_price_visible: true,
-    images: ['https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=800'],
-    featured: true,
-  },
-];
