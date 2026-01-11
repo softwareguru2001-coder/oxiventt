@@ -42,6 +42,7 @@ const item = {
 };
 
 export function FeaturedProducts({ products }: FeaturedProductsProps) {
+  console.log('FeaturedProducts received:', products?.length, 'products');
   const displayProducts = products.slice(0, 4);
   const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
   const [selectedBrochure, setSelectedBrochure] = useState<{

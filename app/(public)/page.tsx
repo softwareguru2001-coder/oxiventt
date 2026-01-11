@@ -4,7 +4,8 @@ import { FeaturedProducts } from '@/components/home/featured-products';
 import { ValuePropositions } from '@/components/home/value-propositions';
 import { supabaseServerClient } from '@/lib/supabase/server';
 
-export const revalidate = 60;
+export const revalidate = 0; // Always fetch fresh data
+export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   let featuredProducts: any[] = [];
@@ -27,8 +28,16 @@ export default async function HomePage() {
         .order('display_order', { ascending: true })
     ]);
 
-    if (productsResult.error) throw productsResult.error;
-    if (slidesResult.error) throw slidesResult.error;
+    if (productsResult.error) {
+      console.error('Products fetch error:', productsResult.error);
+      throw productsResult.error;
+    }
+    if (slidesResult.error) {
+      console.error('Slides fetch error:', slidesResult.error);
+      throw slidesResult.error;
+    }
+
+    console.log('Fetched products:', productsResult.data?.length);
 
     featuredProducts = (productsResult.data || []).map((product: any) => ({
       ...product,
@@ -40,6 +49,8 @@ export default async function HomePage() {
     }));
 
     heroSlides = slidesResult.data || [];
+
+    console.log('Processed featured products:', featuredProducts.length);
   } catch (error) {
     console.error('Failed to fetch data:', error);
   }
