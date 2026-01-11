@@ -3,6 +3,16 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Loader2, Plus, X, Upload, Trash2 } from 'lucide-react';
+import { CategoryForm } from './category-form';
+
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  display_order: number;
+  is_active: boolean;
+}
 
 interface ProductFormProps {
   product?: any;
@@ -17,11 +27,15 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
   const [name, setName] = useState(product?.name || '');
   const [slug, setSlug] = useState(product?.slug || '');
   const [sku, setSku] = useState(product?.sku || '');
-  const [category, setCategory] = useState(product?.category || 'general');
+  const [category, setCategory] = useState(product?.category || '');
   const [description, setDescription] = useState(product?.description || '');
   const [price, setPrice] = useState(product?.price || '');
   const [isPriceVisible, setIsPriceVisible] = useState(product?.is_price_visible ?? true);
   const [featured, setFeatured] = useState(product?.featured || false);
+
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
 
   const [specs, setSpecs] = useState<Record<string, any>>(product?.specs || {});
   const [newSpecKey, setNewSpecKey] = useState('');
@@ -47,6 +61,33 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
       setSlug(generateSlug(name));
     }
   }, [name, slug, isEdit]);
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
+  const loadCategories = async () => {
+    try {
+      const response = await fetch('/api/admin/categories?include_inactive=false');
+      if (response.ok) {
+        const data = await response.json();
+        setCategories(data.categories || []);
+        if (data.categories.length > 0 && !category) {
+          setCategory(data.categories[0].name);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load categories:', err);
+    } finally {
+      setLoadingCategories(false);
+    }
+  };
+
+  const handleCategoryCreated = (newCategory: Category) => {
+    setCategories([...categories, newCategory]);
+    setCategory(newCategory.name);
+    setShowCategoryModal(false);
+  };
 
   const addSpec = () => {
     if (newSpecKey && newSpecValue) {
@@ -240,17 +281,34 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
             <label className="block text-sm font-semibold mb-2">
               Category <span className="text-red-500">*</span>
             </label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="general">General</option>
-              <option value="axial">Axial Fans</option>
-              <option value="centrifugal">Centrifugal Fans</option>
-              <option value="exhaust">Exhaust Fans</option>
-              <option value="industrial">Industrial Fans</option>
-            </select>
+            <div className="flex gap-2">
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                disabled={loadingCategories}
+                className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {loadingCategories ? (
+                  <option>Loading categories...</option>
+                ) : categories.length === 0 ? (
+                  <option value="">No categories available</option>
+                ) : (
+                  categories.map((cat) => (
+                    <option key={cat.id} value={cat.name}>
+                      {cat.name}
+                    </option>
+                  ))
+                )}
+              </select>
+              <button
+                type="button"
+                onClick={() => setShowCategoryModal(true)}
+                className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 flex items-center gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                New
+              </button>
+            </div>
           </div>
         </div>
 
@@ -481,6 +539,19 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
           Cancel
         </button>
       </div>
+
+      {showCategoryModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <h2 className="text-2xl font-bold mb-4">Create New Category</h2>
+            <CategoryForm
+              isModal={true}
+              onSuccess={handleCategoryCreated}
+              onCancel={() => setShowCategoryModal(false)}
+            />
+          </div>
+        </div>
+      )}
     </form>
   );
 }
