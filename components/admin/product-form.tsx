@@ -72,9 +72,11 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
       if (response.ok) {
         const data = await response.json();
         setCategories(data.categories || []);
-        if (data.categories.length > 0 && !category) {
+        if (data.categories.length > 0 && !category && !product?.category) {
           setCategory(data.categories[0].name);
         }
+      } else {
+        console.error('Failed to load categories:', response.status);
       }
     } catch (err) {
       console.error('Failed to load categories:', err);
@@ -84,7 +86,8 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
   };
 
   const handleCategoryCreated = (newCategory: Category) => {
-    setCategories([...categories, newCategory]);
+    const updatedCategories = [...categories, newCategory].sort((a, b) => a.display_order - b.display_order);
+    setCategories(updatedCategories);
     setCategory(newCategory.name);
     setShowCategoryModal(false);
   };

@@ -13,31 +13,28 @@ function generateSlug(name: string): string {
 export async function GET(request: NextRequest) {
   try {
     const supabase = supabaseServerClient();
+    const { searchParams } = new URL(request.url);
+    const includeInactive = searchParams.get('include_inactive') === 'true';
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    const { data: { user } } = await supabase.auth.getUser();
+    let isAdmin = false;
 
-    if (authError || !user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    if (user) {
+      const { data: adminUser } = await supabase
+        .from('admin_users')
+        .select('id')
+        .eq('id', user.id)
+        .maybeSingle();
+
+      isAdmin = !!adminUser;
     }
 
-    const { data: adminUser, error: adminError } = await supabase
-      .from('admin_users')
-      .select('id')
-      .eq('id', user.id)
-      .maybeSingle();
-
-    if (adminError || !adminUser) {
+    if (includeInactive && !isAdmin) {
       return NextResponse.json(
-        { error: 'Forbidden - Admin access required' },
+        { error: 'Admin access required to view inactive categories' },
         { status: 403 }
       );
     }
-
-    const { searchParams } = new URL(request.url);
-    const includeInactive = searchParams.get('include_inactive') === 'true';
 
     let query = supabase
       .from('categories')
