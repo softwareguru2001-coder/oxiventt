@@ -53,7 +53,7 @@ export function Footer() {
               <div className="space-y-3 mb-6">
                 <div className="flex items-start gap-3 text-sm text-white/70 hover:text-white/90 transition-colors">
                   <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <span>202,203, Om Textile Park, 394325, Surat, Surat-394101, Gujarat, India</span>
+                  <span>202,203, Om textile park, v-1 Umbel-parb road, TA. Kamrej, Surat, Gujarat, India - 394325</span>
                 </div>
                 <a
                   href="tel:+919099199000"

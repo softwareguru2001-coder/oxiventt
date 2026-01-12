@@ -61,9 +61,10 @@ export default function ContactPage() {
             </div>
             <h2 className="text-xl font-bold text-industrial-900 mb-3">Address</h2>
             <p className="text-gray-600 leading-relaxed">
-              202,203, Om Textile Park<br />
-              Surat-394101, Gujarat<br />
-              India
+              202,203, Om textile park<br />
+              v-1 Umbel-parb road<br />
+              TA. Kamrej, Surat<br />
+              Gujarat, India - 394325
             </p>
           </div>
         </div>
