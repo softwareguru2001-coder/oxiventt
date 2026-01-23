@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { createPortal } from 'react-dom';
 import { Loader2, Plus, X, Upload, Trash2 } from 'lucide-react';
 import { CategoryForm } from './category-form';
 
@@ -23,6 +24,7 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
 
   const [name, setName] = useState(product?.name || '');
   const [slug, setSlug] = useState(product?.slug || '');
@@ -55,6 +57,10 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '');
   };
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!isEdit && name && !slug) {
@@ -547,7 +553,7 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
         </button>
       </div>
 
-      {showCategoryModal && (
+      {isMounted && showCategoryModal && createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-4">
@@ -566,7 +572,8 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
               onCancel={() => setShowCategoryModal(false)}
             />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </form>
   );
