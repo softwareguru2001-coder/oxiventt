@@ -1,4 +1,4 @@
-import { supabaseServerClient } from '@/lib/supabase/server';
+import { supabasePublicClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import { ProductDetailClient } from '@/components/products/product-detail-client';
 import { Metadata } from 'next';
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
   const decodedSlug = decodeURIComponent(slug);
 
   try {
-    const supabase = supabaseServerClient();
+    const supabase = supabasePublicClient();
     let { data: product } = await supabase
       .from('products')
       .select('*')
@@ -90,7 +90,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   const decodedSlug = decodeURIComponent(slug);
 
   try {
-    const supabase = supabaseServerClient();
+    const supabase = supabasePublicClient();
 
     let { data: product, error } = await supabase
       .from('products')

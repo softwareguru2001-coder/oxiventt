@@ -1,4 +1,4 @@
-import { supabaseServerClient } from '@/lib/supabase/server';
+import { supabasePublicClient } from '@/lib/supabase/server';
 import { ProductsClient } from '@/components/products/products-client';
 import { Suspense } from 'react';
 import { Metadata } from 'next';
@@ -37,7 +37,7 @@ export default async function ProductsPage({
   let categories: string[] = [];
 
   try {
-    const supabase = supabaseServerClient();
+    const supabase = supabasePublicClient();
 
     const { data, error } = await supabase
       .from("products")
