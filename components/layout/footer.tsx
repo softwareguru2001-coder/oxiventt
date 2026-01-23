@@ -44,7 +44,7 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-2xl font-bold mb-4">Industrial Fans</h3>
+              <h3 className="text-2xl font-bold mb-4">OXIVENTT LLP</h3>
               <p className="text-white/70 mb-6 leading-relaxed">
                 Leading manufacturer of high-performance industrial ventilation solutions.
                 Engineering excellence since 1999.
@@ -69,6 +69,10 @@ export function Footer() {
                   <Mail className="w-5 h-5 flex-shrink-0" />
                   <span>info@oxiventt.com</span>
                 </a>
+                <div className="flex items-center gap-3 text-sm text-white/70">
+                  <span className="font-semibold text-white/90">GST No:</span>
+                  <span>24AAKFO0322P1Z6</span>
+                </div>
               </div>
 
               <div className="flex gap-3">
@@ -180,7 +184,7 @@ export function Footer() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="text-sm text-white/60"
             >
-              © {currentYear} Industrial Fans. All rights reserved.
+              © {currentYear} OXIVENTT LLP. All rights reserved.
             </motion.p>
 
             <motion.div

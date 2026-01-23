@@ -1,5 +1,5 @@
 import { QuotationForm } from '@/components/forms/quotation-form';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Building2, FileText } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -89,6 +89,29 @@ export default function ContactPage() {
                   <span className="font-semibold text-gray-900 min-w-[140px]">Sunday:</span>
                   <span className="text-red-600 font-medium">Closed</span>
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-gray-50 via-white to-blue-50 rounded-2xl border border-gray-200/50 p-8 mb-12 shadow-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex items-start gap-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                <Building2 className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-industrial-900 mb-2">Company Name</h2>
+                <p className="text-xl text-gray-700 font-semibold">OXIVENTT LLP</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                <FileText className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-industrial-900 mb-2">GST Number</h2>
+                <p className="text-xl text-gray-700 font-mono font-semibold">24AAKFO0322P1Z6</p>
               </div>
             </div>
           </div>
