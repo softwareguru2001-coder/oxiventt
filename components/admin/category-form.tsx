@@ -58,27 +58,35 @@ export function CategoryForm({ category, isModal = false, onSuccess, onCancel }:
 
       const method = category ? 'PUT' : 'POST';
 
+      console.log('Submitting category:', { url, method, formData });
+
       const response = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(formData),
       });
 
+      console.log('Response status:', response.status);
+
       const data = await response.json();
+      console.log('Response data:', data);
 
       if (!response.ok) {
         throw new Error(data.error || 'Failed to save category');
       }
 
       if (isModal && onSuccess) {
+        console.log('Calling onSuccess with category:', data.category);
         onSuccess(data.category);
       } else {
         router.push('/admin/categories');
         router.refresh();
       }
     } catch (err) {
+      console.error('Error saving category:', err);
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setIsLoading(false);

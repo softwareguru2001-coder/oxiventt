@@ -67,11 +67,14 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('[Categories API] POST request received');
     const supabase = supabaseServerClient();
 
     const { data: { user }, error: authError } = await supabase.auth.getUser();
+    console.log('[Categories API] User:', user?.id, 'Auth error:', authError);
 
     if (authError || !user) {
+      console.log('[Categories API] Unauthorized - no user or auth error');
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
@@ -84,7 +87,10 @@ export async function POST(request: NextRequest) {
       .eq('id', user.id)
       .maybeSingle();
 
+    console.log('[Categories API] Admin check - User:', adminUser, 'Error:', adminError);
+
     if (adminError || !adminUser) {
+      console.log('[Categories API] Forbidden - user is not admin');
       return NextResponse.json(
         { error: 'Forbidden - Admin access required' },
         { status: 403 }
@@ -94,7 +100,10 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { name, description, display_order, is_active } = body;
 
+    console.log('[Categories API] Request body:', body);
+
     if (!name || typeof name !== 'string' || name.trim().length === 0) {
+      console.log('[Categories API] Invalid name:', name);
       return NextResponse.json(
         { error: 'Category name is required' },
         { status: 400 }
@@ -102,6 +111,7 @@ export async function POST(request: NextRequest) {
     }
 
     const slug = generateSlug(name);
+    console.log('[Categories API] Generated slug:', slug);
 
     const { data: existingCategory } = await supabase
       .from('categories')
@@ -110,6 +120,7 @@ export async function POST(request: NextRequest) {
       .maybeSingle();
 
     if (existingCategory) {
+      console.log('[Categories API] Category with slug already exists:', slug);
       return NextResponse.json(
         { error: 'A category with this name already exists' },
         { status: 409 }
@@ -124,6 +135,8 @@ export async function POST(request: NextRequest) {
       is_active: typeof is_active === 'boolean' ? is_active : true,
     };
 
+    console.log('[Categories API] Inserting category:', categoryData);
+
     const { data: category, error } = await supabase
       .from('categories')
       // @ts-ignore - categories table not in Database types yet
@@ -132,13 +145,14 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (error) {
-      console.error('Error creating category:', error);
+      console.error('[Categories API] Error creating category:', error);
       return NextResponse.json(
-        { error: 'Failed to create category' },
+        { error: 'Failed to create category', details: error.message },
         { status: 500 }
       );
     }
 
+    console.log('[Categories API] Category created successfully:', category);
     return NextResponse.json({ category }, { status: 201 });
   } catch (error) {
     console.error('Unexpected error in POST /api/admin/categories:', error);

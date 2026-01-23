@@ -68,7 +68,9 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
 
   const loadCategories = async () => {
     try {
-      const response = await fetch('/api/admin/categories?include_inactive=false');
+      const response = await fetch('/api/admin/categories?include_inactive=false', {
+        credentials: 'include',
+      });
       if (response.ok) {
         const data = await response.json();
         setCategories(data.categories || []);
@@ -86,7 +88,9 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
   };
 
   const handleCategoryCreated = (newCategory: Category) => {
+    console.log('Category created successfully:', newCategory);
     const updatedCategories = [...categories, newCategory].sort((a, b) => a.display_order - b.display_order);
+    console.log('Updated categories list:', updatedCategories);
     setCategories(updatedCategories);
     setCategory(newCategory.name);
     setShowCategoryModal(false);
@@ -544,9 +548,18 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
       </div>
 
       {showCategoryModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
-            <h2 className="text-2xl font-bold mb-4">Create New Category</h2>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold">Create New Category</h2>
+              <button
+                type="button"
+                onClick={() => setShowCategoryModal(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
             <CategoryForm
               isModal={true}
               onSuccess={handleCategoryCreated}
