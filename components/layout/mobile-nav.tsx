@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Home, Package, Phone, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -45,13 +46,13 @@ export function MobileNav() {
             >
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-xl">OX</span>
-                    </div>
-                    <span className="text-xl font-bold text-gray-900">
-                      Oxiventt
-                    </span>
+                  <div className="relative w-28 h-10">
+                    <Image
+                      src="/oxiventt.png"
+                      alt="Oxiventt"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}

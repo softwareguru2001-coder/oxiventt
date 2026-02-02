@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { supabaseBrowserClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { Lock, Mail, CircleAlert as AlertCircle } from 'lucide-react';
@@ -66,6 +67,17 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="w-full max-w-md px-4">
         <div className="bg-white rounded-xl shadow-xl p-8 border border-slate-200">
+          <div className="flex justify-center mb-4">
+            <div className="relative w-40 h-14">
+              <Image
+                src="/oxiventt.png"
+                alt="Oxiventt"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
           <div className="flex justify-center mb-6">
             <div className="w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center">
               <Lock className="w-8 h-8 text-white" />

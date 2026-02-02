@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
@@ -44,7 +45,14 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-2xl font-bold mb-4">OXIVENTT LLP</h3>
+              <div className="relative w-48 h-16 mb-6 brightness-0 invert">
+                <Image
+                  src="/oxiventt.png"
+                  alt="Oxiventt"
+                  fill
+                  className="object-contain object-left"
+                />
+              </div>
               <p className="text-white/70 mb-6 leading-relaxed">
                 Leading manufacturer of high-performance industrial ventilation solutions.
                 Engineering excellence since 1999.

@@ -1,6 +1,7 @@
 import { Footer } from '@/components/layout/footer';
 import { MobileNav } from '@/components/layout/mobile-nav';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function PublicLayout({
   children,
@@ -12,15 +13,15 @@ export default function PublicLayout({
       <header className="sticky top-0 z-50 border-b border-gray-200/50 bg-white/95 backdrop-blur-xl shadow-sm">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between h-18 md:h-22">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-11 h-11 md:w-13 md:h-13 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <span className="text-white font-bold text-xl md:text-2xl">OX</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-industrial-900 to-industrial-700 bg-clip-text text-transparent leading-none">
-                  Oxiventt
-                </span>
-                <span className="text-xs text-gray-500 font-medium mt-0.5">Excellence in Ventilation</span>
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="relative w-32 h-12 md:w-40 md:h-14 transition-all duration-300 group-hover:scale-105">
+                <Image
+                  src="/oxiventt.png"
+                  alt="Oxiventt - Industrial Airflow"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
             </Link>
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { LogOut, LayoutDashboard, Package, Users, Image, Layers } from 'lucide-react';
+import Image from 'next/image';
+import { LogOut, LayoutDashboard, Package, Users, Image as ImageIcon, Layers } from 'lucide-react';
 import { SignOutButton } from '@/components/auth/sign-out-button';
 
 export default async function AdminLayout({
@@ -13,8 +14,18 @@ export default async function AdminLayout({
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
-              <Link href="/admin" className="text-xl font-bold hover:text-slate-200 transition-colors">
-                Admin Panel
+              <Link href="/admin" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+                <div className="relative w-28 h-10 brightness-0 invert">
+                  <Image
+                    src="/oxiventt.png"
+                    alt="Oxiventt Admin"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <span className="text-sm font-semibold text-slate-300 border-l border-slate-700 pl-4">
+                  Admin Panel
+                </span>
               </Link>
               <nav className="hidden md:flex items-center gap-6">
                 <Link
@@ -42,7 +53,7 @@ export default async function AdminLayout({
                   href="/admin/slides"
                   className="flex items-center gap-2 text-sm hover:text-slate-200 transition-colors"
                 >
-                  <Image className="w-4 h-4" />
+                  <ImageIcon className="w-4 h-4" />
                   Hero Slides
                 </Link>
                 <Link
