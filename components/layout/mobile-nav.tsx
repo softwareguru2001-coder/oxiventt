@@ -33,7 +33,7 @@ export function MobileNav() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 md:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] md:hidden"
               onClick={() => setIsOpen(false)}
             />
 
@@ -42,29 +42,29 @@ export function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-50 md:hidden"
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-[101] md:hidden overflow-hidden"
             >
               <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                  <div className="relative w-28 h-10">
+                <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200 bg-white">
+                  <div className="relative w-24 h-9 flex-shrink-0">
                     <Image
                       src="/oxiventt.png"
                       alt="Oxiventt"
                       fill
-                      className="object-contain"
+                      className="object-contain object-left"
                     />
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"
                     aria-label="Close menu"
                   >
                     <X className="w-6 h-6 text-gray-700" />
                   </button>
                 </div>
 
-                <nav className="flex-1 overflow-y-auto py-8">
-                  <ul className="space-y-2 px-4">
+                <nav className="flex-1 overflow-y-auto py-6 bg-white">
+                  <ul className="space-y-1 px-4">
                     {menuItems.map((item) => {
                       const Icon = item.icon;
                       return (
@@ -72,9 +72,9 @@ export function MobileNav() {
                           <Link
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-4 px-4 py-4 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group"
+                            className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group"
                           >
-                            <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                            <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
                             <span className="text-base font-medium">{item.label}</span>
                           </Link>
                         </li>
@@ -83,11 +83,11 @@ export function MobileNav() {
                   </ul>
                 </nav>
 
-                <div className="p-6 border-t border-gray-200 bg-gradient-to-br from-blue-50 to-cyan-50">
+                <div className="p-4 border-t border-gray-200 bg-white flex-shrink-0">
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full px-6 py-4 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl hover:shadow-lg transition-all duration-300"
+                    className="flex items-center justify-center gap-2 w-full px-6 py-3.5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl hover:shadow-lg transition-all duration-300 active:scale-95"
                   >
                     <Phone className="w-5 h-5" />
                     Get Quote
