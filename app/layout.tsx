@@ -74,11 +74,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" itemScope itemType="https://schema.org/WebPage">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_SUPABASE_URL} />
+        <meta name="theme-color" content="#1e3a8a" />
+        <meta name="color-scheme" content="light" />
+        <meta name="format-detection" content="telephone=no" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>

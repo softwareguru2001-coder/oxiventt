@@ -41,19 +41,30 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
     const productData = product as any;
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
-    const title = `${productData.name} - Oxiventt`;
+    const title = `${productData.name} - Industrial Fan | Oxiventt`;
     const description = productData.description
-      ? productData.description.substring(0, 160)
-      : `High-quality ${productData.name} available in various sizes and specifications.`;
+      ? productData.description.substring(0, 155)
+      : `High-quality ${productData.name} for industrial ventilation. Available in various sizes and specifications. Contact us for custom solutions and quotations.`;
     const image = productData.images && productData.images.length > 0
       ? productData.images[0]
       : `${baseUrl}/og-default.jpg`;
 
+    const keywords = [
+      productData.name,
+      `${productData.name} specifications`,
+      productData.category,
+      'industrial fan',
+      'exhaust fan',
+      'ventilation solution',
+      'India',
+    ];
+
     return {
       title,
       description,
+      keywords,
       openGraph: {
-        title,
+        title: `${productData.name} - Premium Industrial Ventilation`,
         description,
         type: 'website',
         url: `${baseUrl}/products/${slug}`,
@@ -62,7 +73,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
             url: image,
             width: 1200,
             height: 630,
-            alt: productData.name,
+            alt: `${productData.name} - Industrial Ventilation Solution`,
           },
         ],
       },

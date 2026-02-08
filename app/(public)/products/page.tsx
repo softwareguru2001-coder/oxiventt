@@ -5,12 +5,29 @@ import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
+
 export const metadata: Metadata = {
-  title: 'Products',
-  description: 'Browse our comprehensive range of industrial fans, exhaust fans, and ventilation solutions. Find the perfect fan for your industrial, commercial, or residential needs.',
+  title: 'Industrial Fans & Exhaust Fans - Complete Product Catalog',
+  description: 'Explore our complete range of industrial fans, exhaust fans, axial fans, and centrifugal fans. High-quality ventilation solutions with customizable sizes and specifications. Find the perfect fan for your needs.',
+  keywords: [
+    'industrial fans catalog',
+    'exhaust fans products',
+    'axial fans India',
+    'centrifugal fans',
+    'ventilation products',
+    'industrial ventilation catalog',
+    'buy industrial fans',
+    'exhaust fan models',
+  ],
   openGraph: {
-    title: 'Oxiventt - Ventilation Solutions',
+    title: 'Industrial Fans & Ventilation Products - Oxiventt',
     description: 'Browse our comprehensive range of industrial fans, exhaust fans, and ventilation solutions.',
+    type: 'website',
+    url: `${baseUrl}/products`,
+  },
+  alternates: {
+    canonical: `${baseUrl}/products`,
   },
 };
 

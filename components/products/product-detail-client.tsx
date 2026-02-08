@@ -16,6 +16,7 @@ import { BrochureModal } from './brochure-modal';
 import { ProductCard } from './product-card';
 import { QuotationForm } from '@/components/forms/quotation-form';
 import { WhatsAppButton } from '@/components/ui/whatsapp-button';
+import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 
 interface Product {
   id: string;
@@ -90,7 +91,16 @@ export function ProductDetailClient({
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl" />
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-cyan-500/10 rounded-full filter blur-3xl" />
         <div className="container mx-auto px-3 sm:px-4 md:px-8 relative z-10">
-          <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/60 mb-0">
+          <div className="text-white/80">
+            <Breadcrumbs
+              items={[
+                { name: 'Products', url: '/products' },
+                { name: product.name, url: `/products/${product.slug}` }
+              ]}
+              className="[&_.text-gray-600]:text-white/70 [&_.text-gray-900]:text-white [&_.hover\\:text-blue-600]:hover:text-white [&_.text-gray-400]:text-white/50"
+            />
+          </div>
+          <nav className="hidden items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/60 mb-0">
             <Link href="/" className="hover:text-white transition-colors font-medium hover:underline">
               Home
             </Link>

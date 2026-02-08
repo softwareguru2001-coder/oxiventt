@@ -16,10 +16,11 @@ export default function PublicLayout({
               <div className="relative w-24 h-8 sm:w-28 sm:h-10 md:w-40 md:h-14 transition-all duration-300 group-hover:scale-105">
                 <Image
                   src="/oxiventt.png"
-                  alt="Oxiventt - Industrial Airflow"
+                  alt="Oxiventt - Leading Manufacturer of Industrial Fans and Ventilation Solutions in India"
                   fill
                   className="object-contain object-left"
                   priority
+                  sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 160px"
                 />
               </div>
             </Link>

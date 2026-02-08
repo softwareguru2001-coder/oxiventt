@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Search, SlidersHorizontal, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ProductCard } from './product-card';
 import { BrochureModal } from './brochure-modal';
+import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 
 interface Product {
   id: string;
@@ -141,6 +142,11 @@ export function ProductsClient({
       </div>
 
       <div className="container mx-auto px-3 sm:px-4 md:px-8 py-6 sm:py-8 md:py-12">
+        <div className="mb-6">
+          <Breadcrumbs
+            items={[{ name: 'Products', url: '/products' }]}
+          />
+        </div>
         <div className="flex flex-col lg:flex-row gap-8">
           <aside
             className={`lg:w-72 flex-shrink-0 ${
