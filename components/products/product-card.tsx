@@ -67,7 +67,7 @@ export function ProductCard({ product, onBrochureClick }: ProductCardProps) {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-cyan-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        <div className="relative h-72 overflow-hidden bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50">
+        <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50">
           {product.images && product.images.length > 0 && product.images[0] ? (
             <AnimatePresence mode="wait">
               <motion.div
@@ -106,9 +106,9 @@ export function ProductCard({ product, onBrochureClick }: ProductCardProps) {
             onClick={handleWhatsApp}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="absolute bottom-4 right-4 p-4 rounded-full bg-green-500 text-white shadow-xl hover:bg-green-600 hover:shadow-2xl transition-all duration-300 z-10"
+            className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 p-3 sm:p-4 rounded-full bg-green-500 text-white shadow-xl hover:bg-green-600 hover:shadow-2xl transition-all duration-300 z-10"
           >
-            <MessageCircle className="w-5 h-5" />
+            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
           </motion.button>
 
           {product.brochure_url && (
@@ -116,15 +116,15 @@ export function ProductCard({ product, onBrochureClick }: ProductCardProps) {
               onClick={handleBrochureClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="absolute bottom-4 left-4 px-4 py-2.5 rounded-full bg-white/95 backdrop-blur-sm text-blue-600 shadow-xl hover:shadow-2xl transition-all duration-300 z-10 flex items-center gap-2 text-sm font-bold border border-blue-100"
+              className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 px-3 py-2 sm:px-4 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-sm text-blue-600 shadow-xl hover:shadow-2xl transition-all duration-300 z-10 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold border border-blue-100"
             >
-              <Download className="w-4 h-4" />
+              <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               Brochure
             </motion.button>
           )}
 
           {product.available_sizes && product.available_sizes.length > 0 && (
-            <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm shadow-lg border border-gray-100">
+            <div className="absolute top-3 right-3 sm:top-4 sm:right-4 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-sm shadow-lg border border-gray-100">
               <span className="text-xs font-bold text-gray-700">
                 {product.available_sizes.length} Sizes
               </span>
@@ -132,41 +132,41 @@ export function ProductCard({ product, onBrochureClick }: ProductCardProps) {
           )}
         </div>
 
-        <div className="relative p-6 md:p-7">
-          <div className="mb-4">
-            <span className="inline-block px-3 py-1.5 text-xs font-bold text-blue-600 bg-blue-50 rounded-lg mb-3 border border-blue-100">
+        <div className="relative p-4 sm:p-6 md:p-7">
+          <div className="mb-3 sm:mb-4">
+            <span className="inline-block px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs font-bold text-blue-600 bg-blue-50 rounded-lg mb-2 sm:mb-3 border border-blue-100">
               {product.category || 'General'}
             </span>
-            <h3 className="text-xl font-bold text-industrial-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2 leading-tight">
+            <h3 className="text-lg sm:text-xl font-bold text-industrial-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2 leading-tight">
               {product.name}
             </h3>
           </div>
 
           {product.short_description && (
-            <p className="text-sm text-gray-600 line-clamp-2 mb-5 leading-relaxed">
+            <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 mb-4 sm:mb-5 leading-relaxed">
               {product.short_description}
             </p>
           )}
 
-          <div className="flex items-center justify-between pt-5 border-t border-gray-100">
+          <div className="flex items-center justify-between pt-4 sm:pt-5 border-t border-gray-100">
             {product.is_price_visible && product.price ? (
               <div>
-                <p className="text-xs text-gray-500 mb-1 font-medium">Starting from</p>
-                <p className="text-xl font-bold bg-gradient-to-r from-industrial-900 to-industrial-700 bg-clip-text text-transparent">
+                <p className="text-xs text-gray-500 mb-0.5 sm:mb-1 font-medium">Starting from</p>
+                <p className="text-lg sm:text-xl font-bold bg-gradient-to-r from-industrial-900 to-industrial-700 bg-clip-text text-transparent">
                   ₹{Number(product.price).toLocaleString()}
                 </p>
               </div>
             ) : (
-              <p className="text-sm font-bold text-gray-700">Contact for pricing</p>
+              <p className="text-xs sm:text-sm font-bold text-gray-700">Contact for pricing</p>
             )}
 
             <motion.div
               animate={{ x: isHovered ? 4 : 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center gap-2 text-blue-600 font-bold text-sm"
+              className="flex items-center gap-1.5 sm:gap-2 text-blue-600 font-bold text-xs sm:text-sm"
             >
               View
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.div>
           </div>
         </div>

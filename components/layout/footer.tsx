@@ -36,8 +36,8 @@ export function Footer() {
 
   return (
     <footer className="bg-gradient-to-br from-industrial-900 via-industrial-800 to-industrial-900 text-white">
-      <div className="container mx-auto px-4 md:px-8 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <div className="container mx-auto px-3 sm:px-4 md:px-8 py-12 sm:py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-10 sm:mb-12">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="relative w-48 h-16 mb-6 brightness-0 invert">
+              <div className="relative w-40 h-14 sm:w-48 sm:h-16 mb-4 sm:mb-6 brightness-0 invert">
                 <Image
                   src="/oxiventt.png"
                   alt="Oxiventt"
@@ -53,28 +53,28 @@ export function Footer() {
                   className="object-contain object-left"
                 />
               </div>
-              <p className="text-white/70 mb-6 leading-relaxed">
+              <p className="text-sm sm:text-base text-white/70 mb-4 sm:mb-6 leading-relaxed">
                 Leading manufacturer of high-performance industrial ventilation solutions.
                 Engineering excellence since 1999.
               </p>
 
-              <div className="space-y-3 mb-6">
-                <div className="flex items-start gap-3 text-sm text-white/70 hover:text-white/90 transition-colors">
-                  <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <div className="space-y-2.5 sm:space-y-3 mb-4 sm:mb-6">
+                <div className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-white/70 hover:text-white/90 transition-colors">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" />
                   <span>202,203, Om textile park, v-1 Umbel-parb road, TA. Kamrej, Surat, Gujarat, India - 394325</span>
                 </div>
                 <a
                   href="tel:+919099199000"
-                  className="flex items-center gap-3 text-sm text-white/70 hover:text-white/90 transition-colors"
+                  className="flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-white/70 hover:text-white/90 transition-colors"
                 >
-                  <Phone className="w-5 h-5 flex-shrink-0" />
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                   <span>+91 90991 99000</span>
                 </a>
                 <a
                   href="mailto:info@oxiventt.com"
-                  className="flex items-center gap-3 text-sm text-white/70 hover:text-white/90 transition-colors"
+                  className="flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-white/70 hover:text-white/90 transition-colors"
                 >
-                  <Mail className="w-5 h-5 flex-shrink-0" />
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                   <span>info@oxiventt.com</span>
                 </a>
                 <div className="flex items-center gap-3 text-sm text-white/70">

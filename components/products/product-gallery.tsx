@@ -120,15 +120,15 @@ export function ProductGallery({
             <>
               <button
                 onClick={handlePrevious}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-800 hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-800 hover:bg-white transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 shadow-lg"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
               <button
                 onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-800 hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-800 hover:bg-white transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 shadow-lg"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </>
           )}
@@ -149,7 +149,7 @@ export function ProductGallery({
         </div>
 
         {media.length > 1 && (
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3">
             {media.slice(0, 4).map((item, index) => {
               const isVideo = index === images.length && videoUrl !== undefined;
               return (

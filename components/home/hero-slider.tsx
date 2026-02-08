@@ -95,7 +95,7 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
 
   return (
     <div
-      className="relative w-full h-[75vh] md:h-[85vh] lg:h-[90vh] overflow-hidden bg-industrial-950"
+      className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden bg-industrial-950"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -130,8 +130,8 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
           <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-4 md:px-8 lg:px-12 z-10">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="container mx-auto px-3 sm:px-4 md:px-8 lg:px-12 z-10">
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -142,14 +142,15 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3, duration: 0.8 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-6"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium mb-4 sm:mb-6"
                   >
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    Trusted by Industry Leaders
+                    <span className="hidden xs:inline">Trusted by Industry Leaders</span>
+                    <span className="xs:hidden">Trusted Leaders</span>
                   </motion.div>
 
                   <motion.h1
-                    className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-[1.1]"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-[1.1]"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
@@ -158,7 +159,7 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
                   </motion.h1>
 
                   <motion.p
-                    className="text-lg md:text-xl lg:text-2xl text-white/95 mb-10 leading-relaxed"
+                    className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 mb-6 sm:mb-8 md:mb-10 leading-relaxed"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.8 }}
@@ -167,25 +168,25 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
                   </motion.p>
 
                   <motion.div
-                    className="flex flex-col sm:flex-row gap-4"
+                    className="flex flex-col sm:flex-row gap-3 sm:gap-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8, duration: 0.8 }}
                   >
                     <Link
                       href="/products"
-                      className="group relative inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-bold text-white overflow-hidden rounded-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-cyan-600 hover:shadow-2xl hover:scale-105"
+                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base md:text-lg font-bold text-white overflow-hidden rounded-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-cyan-600 hover:shadow-2xl hover:scale-105"
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         Explore Products
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                       </span>
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </Link>
 
                     <Link
                       href="/contact"
-                      className="group relative inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-bold text-white overflow-hidden rounded-xl transition-all duration-300 border-2 border-white/30 backdrop-blur-md hover:border-white hover:bg-white/10 hover:scale-105"
+                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base md:text-lg font-bold text-white overflow-hidden rounded-xl transition-all duration-300 border-2 border-white/30 backdrop-blur-md hover:border-white hover:bg-white/10 hover:scale-105"
                     >
                       <span className="relative z-10">Request Quote</span>
                     </Link>
@@ -225,29 +226,29 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-glow hover:scale-110 transition-all duration-300"
+        className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3 md:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-glow hover:scale-110 transition-all duration-300"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-glow hover:scale-110 transition-all duration-300"
+        className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3 md:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-glow hover:scale-110 transition-all duration-300"
         aria-label="Next slide"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-2 sm:gap-3">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
             className={`rounded-full transition-all duration-300 ${
               index === current
-                ? 'bg-white w-12 h-3 shadow-glow'
-                : 'bg-white/40 hover:bg-white/60 w-3 h-3'
+                ? 'bg-white w-8 sm:w-10 md:w-12 h-2.5 sm:h-3 shadow-glow'
+                : 'bg-white/40 hover:bg-white/60 w-2.5 sm:w-3 h-2.5 sm:h-3'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

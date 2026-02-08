@@ -325,7 +325,7 @@ export function QuotationForm({
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Enter any specific requirements or questions"
-              rows={4}
+              rows={3}
               disabled={isSubmitting}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:bg-gray-50 resize-none"
             />

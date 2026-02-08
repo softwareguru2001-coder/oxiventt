@@ -14,26 +14,26 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
-      <div className="relative bg-gradient-to-br from-industrial-900 via-industrial-800 to-gray-900 text-white py-20 md:py-24 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-industrial-900 via-industrial-800 to-gray-900 text-white py-16 sm:py-20 md:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/5" />
         <div className="absolute inset-0 bg-gradient-to-t from-industrial-900/50 to-transparent" />
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
+        <div className="container mx-auto px-3 sm:px-4 md:px-8 relative z-10">
           <div className="text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">Contact Us</h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent px-4">Contact Us</h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed px-4">
               Get in touch with our team for inquiries, quotations, or support
             </p>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
-          <div className="group bg-white rounded-2xl border border-gray-200/50 p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <Mail className="w-7 h-7 text-white" />
+      <div className="container mx-auto px-3 sm:px-4 md:px-8 py-10 sm:py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-12">
+          <div className="group bg-white rounded-xl sm:rounded-2xl border border-gray-200/50 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
             </div>
-            <h2 className="text-xl font-bold text-industrial-900 mb-3">Email</h2>
+            <h2 className="text-lg sm:text-xl font-bold text-industrial-900 mb-2 sm:mb-3">Email</h2>
             <a
               href="mailto:info@oxiventt.com"
               className="text-blue-600 hover:text-blue-700 transition-colors font-medium"
@@ -42,11 +42,11 @@ export default function ContactPage() {
             </a>
           </div>
 
-          <div className="group bg-white rounded-2xl border border-gray-200/50 p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <Phone className="w-7 h-7 text-white" />
+          <div className="group bg-white rounded-xl sm:rounded-2xl border border-gray-200/50 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <Phone className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
             </div>
-            <h2 className="text-xl font-bold text-industrial-900 mb-3">Phone</h2>
+            <h2 className="text-lg sm:text-xl font-bold text-industrial-900 mb-2 sm:mb-3">Phone</h2>
             <a
               href="tel:+919099199000"
               className="text-green-600 hover:text-green-700 transition-colors font-medium"
@@ -55,11 +55,11 @@ export default function ContactPage() {
             </a>
           </div>
 
-          <div className="group bg-white rounded-2xl border border-gray-200/50 p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:col-span-2 lg:col-span-1">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <MapPin className="w-7 h-7 text-white" />
+          <div className="group bg-white rounded-xl sm:rounded-2xl border border-gray-200/50 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:col-span-2 lg:col-span-1">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <MapPin className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
             </div>
-            <h2 className="text-xl font-bold text-industrial-900 mb-3">Address</h2>
+            <h2 className="text-lg sm:text-xl font-bold text-industrial-900 mb-2 sm:mb-3">Address</h2>
             <p className="text-gray-600 leading-relaxed">
               202,203, Om textile park<br />
               v-1 Umbel-parb road<br />
@@ -69,13 +69,13 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 rounded-2xl border border-blue-100/50 p-8 mb-12 shadow-lg">
-          <div className="flex items-start gap-6">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-lg">
-              <Clock className="w-8 h-8 text-white" />
+        <div className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 rounded-xl sm:rounded-2xl border border-blue-100/50 p-6 sm:p-8 mb-10 sm:mb-12 shadow-lg">
+          <div className="flex items-start gap-4 sm:gap-6">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+              <Clock className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-industrial-900 mb-4">Business Hours</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-industrial-900 mb-3 sm:mb-4">Business Hours</h2>
               <div className="space-y-2 text-gray-700">
                 <p className="flex items-center gap-2">
                   <span className="font-semibold text-gray-900 min-w-[140px]">Monday - Friday:</span>
