@@ -145,8 +145,8 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
                     className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium mb-4 sm:mb-6"
                   >
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    <span className="hidden xs:inline">Trusted by Industry Leaders</span>
-                    <span className="xs:hidden">Trusted Leaders</span>
+                    <span className="hidden sm:inline">Trusted by Industry Leaders</span>
+                    <span className="sm:hidden">Trusted Leaders</span>
                   </motion.div>
 
                   <motion.h1

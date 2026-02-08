@@ -129,22 +129,19 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
                 <span className="text-base sm:text-lg">✓</span>
               </div>
-              <span className="hidden xs:inline">ISO Certified</span>
-              <span className="xs:hidden">ISO</span>
+              ISO Certified
             </div>
             <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700">
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
                 <span className="text-base sm:text-lg">⚡</span>
               </div>
-              <span className="hidden xs:inline">Energy Efficient</span>
-              <span className="xs:hidden">Efficient</span>
+              Energy Efficient
             </div>
             <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700">
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
                 <span className="text-base sm:text-lg">🛡️</span>
               </div>
-              <span className="hidden xs:inline">10+ Year Warranty</span>
-              <span className="xs:hidden">10+ Warranty</span>
+              10+ Year Warranty
             </div>
           </motion.div>
         </motion.div>
