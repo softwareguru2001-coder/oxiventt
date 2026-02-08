@@ -1,5 +1,4 @@
 import { Footer } from '@/components/layout/footer';
-import { MobileNav } from '@/components/layout/mobile-nav';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -25,7 +24,7 @@ export default function PublicLayout({
               </div>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-2">
+            <nav className="flex items-center gap-2">
               <Link
                 href="/"
                 className="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200"
@@ -45,8 +44,6 @@ export default function PublicLayout({
                 Get Quote
               </Link>
             </nav>
-
-            <MobileNav />
           </div>
         </div>
       </header>
