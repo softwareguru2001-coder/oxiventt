@@ -27,13 +27,16 @@ export function MobileNav() {
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="md:hidden p-2.5 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-colors relative z-50"
-        aria-label="Open menu"
-      >
-        <Menu className="w-6 h-6 text-gray-700" />
-      </button>
+      <div className="md:hidden">
+        <button
+          onClick={() => setIsOpen(true)}
+          className="p-2.5 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-colors relative z-50 border-2 border-red-500"
+          aria-label="Open menu"
+        >
+          <Menu className="w-6 h-6 text-gray-700" />
+        </button>
+        {isOpen && <div className="fixed top-20 right-4 bg-red-500 text-white p-4 text-xl font-bold z-[100000]">MENU IS OPEN</div>}
+      </div>
 
       <AnimatePresence>
         {isOpen && (
@@ -56,8 +59,8 @@ export function MobileNav() {
               className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl md:hidden overflow-y-auto"
               style={{ zIndex: 99999 }}
             >
-              <div className="flex flex-col h-full bg-white">
-                <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200 bg-white flex-shrink-0">
+              <div className="flex flex-col h-full bg-yellow-300">
+                <div className="flex items-center justify-between px-6 py-5 border-b-4 border-red-500 bg-blue-300 flex-shrink-0">
                   <div className="relative w-28 h-10">
                     <Image
                       src="/oxiventt.png"
@@ -75,7 +78,7 @@ export function MobileNav() {
                   </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-white">
+                <div className="flex-1 overflow-y-auto bg-green-300">
                   <nav className="py-2">
                     <ul>
                       {mainMenuItems.map((item) => (
@@ -83,17 +86,17 @@ export function MobileNav() {
                           <Link
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className="block px-6 py-4 text-[15px] text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors border-b border-gray-100"
+                            className="block px-6 py-4 text-[20px] font-bold text-black bg-red-200 hover:bg-red-300 transition-colors border-b-2 border-black"
                           >
                             {item.label}
                           </Link>
                         </li>
                       ))}
 
-                      <li className="border-b border-gray-100">
+                      <li className="border-b-2 border-black">
                         <button
                           onClick={() => setProductsExpanded(!productsExpanded)}
-                          className="w-full flex items-center justify-between px-6 py-4 text-[15px] text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors"
+                          className="w-full flex items-center justify-between px-6 py-4 text-[20px] font-bold text-black bg-orange-200 hover:bg-orange-300 transition-colors"
                         >
                           <span>Products</span>
                           {productsExpanded ? (
@@ -145,7 +148,7 @@ export function MobileNav() {
                                 href={item.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block px-6 py-4 text-[15px] text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors border-b border-gray-100"
+                                className="block px-6 py-4 text-[20px] font-bold text-black bg-purple-200 hover:bg-purple-300 transition-colors border-b-2 border-black"
                               >
                                 {item.label}
                               </a>
@@ -157,7 +160,7 @@ export function MobileNav() {
                             <Link
                               href={item.href}
                               onClick={() => setIsOpen(false)}
-                              className="block px-6 py-4 text-[15px] text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors border-b border-gray-100"
+                              className="block px-6 py-4 text-[20px] font-bold text-black bg-cyan-200 hover:bg-cyan-300 transition-colors border-b-2 border-black"
                             >
                               {item.label}
                             </Link>
