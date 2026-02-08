@@ -10,7 +10,7 @@ export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [productsExpanded, setProductsExpanded] = useState(false);
 
-  const menuItems = [
+  const mainMenuItems = [
     { href: '/', label: 'Home', icon: Home },
   ];
 
@@ -20,9 +20,9 @@ export function MobileNav() {
     { href: '/products?category=exhaust', label: 'Exhaust Systems', icon: Factory },
   ];
 
-  const contactLinks = [
-    { href: '/contact', label: 'Contact Us', icon: Mail },
-    { href: 'https://wa.me/919099199000', label: 'WhatsApp', icon: MessageCircle, external: true },
+  const additionalLinks = [
+    { href: '/contact', label: 'Get Quote', icon: Phone },
+    { href: 'https://wa.me/919099199000', label: 'WhatsApp Support', icon: MessageCircle, external: true },
   ];
 
   return (
@@ -75,7 +75,7 @@ export function MobileNav() {
 
                 <nav className="flex-1 overflow-y-auto py-4 bg-white">
                   <ul className="space-y-1 px-4">
-                    {menuItems.map((item) => {
+                    {mainMenuItems.map((item) => {
                       const Icon = item.icon;
                       return (
                         <li key={item.href}>
@@ -145,7 +145,7 @@ export function MobileNav() {
                       </AnimatePresence>
                     </li>
 
-                    {contactLinks.map((item) => {
+                    {additionalLinks.map((item) => {
                       const Icon = item.icon;
                       if (item.external) {
                         return (
@@ -179,7 +179,7 @@ export function MobileNav() {
 
                   <div className="px-4 mt-6 pt-6 border-t border-gray-200">
                     <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">
-                      Contact Information
+                      Quick Contact
                     </p>
                     <div className="space-y-3 px-4">
                       <a
@@ -200,24 +200,15 @@ export function MobileNav() {
                   </div>
                 </nav>
 
-                <div className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 flex-shrink-0 space-y-2">
+                <div className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 flex-shrink-0">
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
                     className="flex items-center justify-center gap-2 w-full px-6 py-3.5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl hover:shadow-lg transition-all duration-300 active:scale-95"
                   >
                     <Phone className="w-5 h-5" />
-                    Request Quote
+                    Request a Quote Now
                   </Link>
-                  <a
-                    href="https://wa.me/919099199000"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full px-6 py-3 text-sm font-semibold text-blue-700 bg-white border-2 border-blue-200 rounded-xl hover:bg-blue-50 transition-all duration-300 active:scale-95"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    WhatsApp Support
-                  </a>
                 </div>
               </div>
             </motion.div>
