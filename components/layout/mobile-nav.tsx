@@ -74,7 +74,7 @@ export function MobileNav() {
                 </div>
 
                 <nav className="flex-1 py-6 bg-white">
-                  <ul className="space-y-2 px-5">
+                  <ul className="space-y-3 px-5">
                     {mainMenuItems.map((item) => {
                       const Icon = item.icon;
                       return (
@@ -82,10 +82,10 @@ export function MobileNav() {
                           <Link
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-4 px-4 py-4 rounded-xl text-gray-900 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group font-medium"
+                            className="flex items-center gap-4 px-5 py-4 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 group font-semibold text-base shadow-sm"
                           >
-                            <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                            <span className="text-base">{item.label}</span>
+                            <Icon className="w-6 h-6 flex-shrink-0" />
+                            <span>{item.label}</span>
                           </Link>
                         </li>
                       );
@@ -94,11 +94,11 @@ export function MobileNav() {
                     <li>
                       <button
                         onClick={() => setProductsExpanded(!productsExpanded)}
-                        className="flex items-center justify-between w-full gap-4 px-4 py-4 rounded-xl text-gray-900 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group font-medium"
+                        className="flex items-center justify-between w-full gap-4 px-5 py-4 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 group font-semibold text-base shadow-sm"
                       >
                         <div className="flex items-center gap-4">
-                          <Package className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                          <span className="text-base">Products</span>
+                          <Package className="w-6 h-6 flex-shrink-0" />
+                          <span>Products</span>
                         </div>
                         {productsExpanded ? (
                           <ChevronUp className="w-5 h-5 flex-shrink-0" />
@@ -114,13 +114,13 @@ export function MobileNav() {
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="overflow-hidden mt-2 space-y-2 pl-4"
+                            className="overflow-hidden mt-3 space-y-2 pl-0"
                           >
                             <li>
                               <Link
                                 href="/products"
                                 onClick={() => setIsOpen(false)}
-                                className="flex items-center gap-3 pl-9 pr-4 py-3 rounded-xl text-gray-700 bg-white hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-sm font-medium"
+                                className="flex items-center gap-3 px-5 py-3 rounded-lg bg-gray-100 text-gray-900 hover:bg-blue-100 hover:text-blue-600 transition-all duration-200 text-sm font-semibold"
                               >
                                 All Products
                               </Link>
@@ -132,9 +132,9 @@ export function MobileNav() {
                                   <Link
                                     href={category.href}
                                     onClick={() => setIsOpen(false)}
-                                    className="flex items-center gap-3 pl-9 pr-4 py-3 rounded-xl text-gray-700 bg-white hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-sm font-medium"
+                                    className="flex items-center gap-3 px-5 py-3 rounded-lg bg-gray-100 text-gray-900 hover:bg-blue-100 hover:text-blue-600 transition-all duration-200 text-sm font-semibold"
                                   >
-                                    <CategoryIcon className="w-4 h-4 flex-shrink-0" />
+                                    <CategoryIcon className="w-5 h-5 flex-shrink-0" />
                                     {category.label}
                                   </Link>
                                 </li>
@@ -154,10 +154,10 @@ export function MobileNav() {
                               href={item.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center gap-4 px-4 py-4 rounded-xl text-gray-900 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group font-medium"
+                              className="flex items-center gap-4 px-5 py-4 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-all duration-200 group font-semibold text-base shadow-sm"
                             >
-                              <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                              <span className="text-base">{item.label}</span>
+                              <Icon className="w-6 h-6 flex-shrink-0" />
+                              <span>{item.label}</span>
                             </a>
                           </li>
                         );
@@ -167,31 +167,31 @@ export function MobileNav() {
                           <Link
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-4 px-4 py-4 rounded-xl text-gray-900 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group font-medium"
+                            className="flex items-center gap-4 px-5 py-4 rounded-lg bg-cyan-600 text-white hover:bg-cyan-700 transition-all duration-200 group font-semibold text-base shadow-sm"
                           >
-                            <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                            <span className="text-base">{item.label}</span>
+                            <Icon className="w-6 h-6 flex-shrink-0" />
+                            <span>{item.label}</span>
                           </Link>
                         </li>
                       );
                     })}
                   </ul>
 
-                  <div className="px-5 mt-6 pt-6 border-t border-gray-200">
-                    <p className="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
+                  <div className="px-5 mt-8 pt-6 border-t-2 border-gray-300">
+                    <p className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">
                       Quick Contact
                     </p>
                     <div className="space-y-3">
                       <a
                         href="tel:+919099199000"
-                        className="flex items-center gap-3 text-sm text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        className="flex items-center gap-3 text-base text-gray-900 hover:text-blue-600 transition-colors font-semibold"
                       >
                         <Phone className="w-5 h-5 flex-shrink-0" />
                         <span>+91 90991 99000</span>
                       </a>
                       <a
                         href="mailto:info@oxiventt.com"
-                        className="flex items-center gap-3 text-sm text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        className="flex items-center gap-3 text-base text-gray-900 hover:text-blue-600 transition-colors font-semibold"
                       >
                         <Mail className="w-5 h-5 flex-shrink-0" />
                         <span>info@oxiventt.com</span>
@@ -200,14 +200,14 @@ export function MobileNav() {
                   </div>
                 </nav>
 
-                <div className="p-5 bg-gradient-to-br from-blue-50 to-cyan-50 border-t border-gray-200 mt-6">
+                <div className="p-5 bg-gray-100 border-t-2 border-gray-300 mt-8">
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-3 w-full px-6 py-4 text-base font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300 active:scale-95 shadow-lg"
+                    className="flex items-center justify-center gap-3 w-full px-6 py-5 text-lg font-bold text-white bg-gradient-to-r from-orange-600 to-red-600 rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300 active:scale-95 shadow-lg"
                   >
-                    <Phone className="w-5 h-5" />
-                    Request a Quote
+                    <Phone className="w-6 h-6" />
+                    Request Quote
                   </Link>
                 </div>
               </div>
