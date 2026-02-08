@@ -43,7 +43,8 @@ export function MobileNav() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] md:hidden"
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm md:hidden"
+              style={{ zIndex: 99998 }}
               onClick={() => setIsOpen(false)}
             />
 
@@ -52,10 +53,11 @@ export function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-[9999] md:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl md:hidden overflow-y-auto border-l-4 border-blue-600"
+              style={{ zIndex: 99999 }}
             >
-              <div className="flex flex-col min-h-full">
-                <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 bg-white sticky top-0 z-10">
+              <div className="flex flex-col min-h-full bg-white">
+                <div className="flex items-center justify-between px-5 py-4 border-b-2 border-gray-300 bg-white sticky top-0" style={{ zIndex: 100 }}>
                   <div className="relative w-24 h-9 flex-shrink-0">
                     <Image
                       src="/oxiventt.png"
@@ -73,7 +75,10 @@ export function MobileNav() {
                   </button>
                 </div>
 
-                <nav className="flex-1 py-6 bg-white">
+                <nav className="flex-1 py-6 bg-white relative" style={{ zIndex: 1 }}>
+                  <div className="px-5 py-3 bg-blue-100 mb-4">
+                    <p className="text-sm font-bold text-gray-900">MENU</p>
+                  </div>
                   <ul className="space-y-3 px-5">
                     {mainMenuItems.map((item) => {
                       const Icon = item.icon;
