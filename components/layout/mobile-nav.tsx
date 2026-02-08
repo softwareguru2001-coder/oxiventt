@@ -29,10 +29,10 @@ export function MobileNav() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        className="md:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors z-50"
         aria-label="Open menu"
       >
-        <Menu className="w-6 h-6 text-gray-700" />
+        <Menu className="w-7 h-7 text-gray-900" />
       </button>
 
       <AnimatePresence>
@@ -43,7 +43,7 @@ export function MobileNav() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] md:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] md:hidden"
               onClick={() => setIsOpen(false)}
             />
 
@@ -52,7 +52,7 @@ export function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-[101] md:hidden overflow-hidden"
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-[9999] md:hidden overflow-hidden"
             >
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200 bg-white">
