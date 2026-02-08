@@ -52,10 +52,10 @@ export function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-[9999] md:hidden overflow-hidden"
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-[9999] md:hidden overflow-y-auto"
             >
-              <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200 bg-white">
+              <div className="flex flex-col min-h-full">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 bg-white sticky top-0 z-10">
                   <div className="relative w-24 h-9 flex-shrink-0">
                     <Image
                       src="/oxiventt.png"
@@ -69,12 +69,12 @@ export function MobileNav() {
                     className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"
                     aria-label="Close menu"
                   >
-                    <X className="w-6 h-6 text-gray-700" />
+                    <X className="w-6 h-6 text-gray-900" />
                   </button>
                 </div>
 
-                <nav className="flex-1 overflow-y-auto py-4 bg-white">
-                  <ul className="space-y-1 px-4">
+                <nav className="flex-1 py-6 bg-white">
+                  <ul className="space-y-2 px-5">
                     {mainMenuItems.map((item) => {
                       const Icon = item.icon;
                       return (
@@ -82,10 +82,10 @@ export function MobileNav() {
                           <Link
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group"
+                            className="flex items-center gap-4 px-4 py-4 rounded-xl text-gray-900 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group font-medium"
                           >
                             <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                            <span className="text-base font-medium">{item.label}</span>
+                            <span className="text-base">{item.label}</span>
                           </Link>
                         </li>
                       );
@@ -94,16 +94,16 @@ export function MobileNav() {
                     <li>
                       <button
                         onClick={() => setProductsExpanded(!productsExpanded)}
-                        className="flex items-center justify-between w-full gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group"
+                        className="flex items-center justify-between w-full gap-4 px-4 py-4 rounded-xl text-gray-900 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group font-medium"
                       >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-4">
                           <Package className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                          <span className="text-base font-medium">Products</span>
+                          <span className="text-base">Products</span>
                         </div>
                         {productsExpanded ? (
-                          <ChevronUp className="w-4 h-4 flex-shrink-0" />
+                          <ChevronUp className="w-5 h-5 flex-shrink-0" />
                         ) : (
-                          <ChevronDown className="w-4 h-4 flex-shrink-0" />
+                          <ChevronDown className="w-5 h-5 flex-shrink-0" />
                         )}
                       </button>
 
@@ -114,13 +114,13 @@ export function MobileNav() {
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="overflow-hidden mt-1 space-y-1"
+                            className="overflow-hidden mt-2 space-y-2 pl-4"
                           >
                             <li>
                               <Link
                                 href="/products"
                                 onClick={() => setIsOpen(false)}
-                                className="flex items-center gap-3 pl-12 pr-4 py-2.5 rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-sm"
+                                className="flex items-center gap-3 pl-9 pr-4 py-3 rounded-xl text-gray-700 bg-white hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-sm font-medium"
                               >
                                 All Products
                               </Link>
@@ -132,7 +132,7 @@ export function MobileNav() {
                                   <Link
                                     href={category.href}
                                     onClick={() => setIsOpen(false)}
-                                    className="flex items-center gap-3 pl-12 pr-4 py-2.5 rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-sm"
+                                    className="flex items-center gap-3 pl-9 pr-4 py-3 rounded-xl text-gray-700 bg-white hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-sm font-medium"
                                   >
                                     <CategoryIcon className="w-4 h-4 flex-shrink-0" />
                                     {category.label}
@@ -154,10 +154,10 @@ export function MobileNav() {
                               href={item.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group"
+                              className="flex items-center gap-4 px-4 py-4 rounded-xl text-gray-900 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group font-medium"
                             >
                               <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                              <span className="text-base font-medium">{item.label}</span>
+                              <span className="text-base">{item.label}</span>
                             </a>
                           </li>
                         );
@@ -167,47 +167,47 @@ export function MobileNav() {
                           <Link
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group"
+                            className="flex items-center gap-4 px-4 py-4 rounded-xl text-gray-900 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 group font-medium"
                           >
                             <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                            <span className="text-base font-medium">{item.label}</span>
+                            <span className="text-base">{item.label}</span>
                           </Link>
                         </li>
                       );
                     })}
                   </ul>
 
-                  <div className="px-4 mt-6 pt-6 border-t border-gray-200">
-                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">
+                  <div className="px-5 mt-6 pt-6 border-t border-gray-200">
+                    <p className="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
                       Quick Contact
                     </p>
-                    <div className="space-y-3 px-4">
+                    <div className="space-y-3">
                       <a
                         href="tel:+919099199000"
-                        className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors"
+                        className="flex items-center gap-3 text-sm text-gray-700 hover:text-blue-600 transition-colors font-medium"
                       >
-                        <Phone className="w-4 h-4 flex-shrink-0" />
+                        <Phone className="w-5 h-5 flex-shrink-0" />
                         <span>+91 90991 99000</span>
                       </a>
                       <a
                         href="mailto:info@oxiventt.com"
-                        className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors"
+                        className="flex items-center gap-3 text-sm text-gray-700 hover:text-blue-600 transition-colors font-medium"
                       >
-                        <Mail className="w-4 h-4 flex-shrink-0" />
+                        <Mail className="w-5 h-5 flex-shrink-0" />
                         <span>info@oxiventt.com</span>
                       </a>
                     </div>
                   </div>
                 </nav>
 
-                <div className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 flex-shrink-0">
+                <div className="p-5 bg-gradient-to-br from-blue-50 to-cyan-50 border-t border-gray-200 mt-6">
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full px-6 py-3.5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl hover:shadow-lg transition-all duration-300 active:scale-95"
+                    className="flex items-center justify-center gap-3 w-full px-6 py-4 text-base font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300 active:scale-95 shadow-lg"
                   >
                     <Phone className="w-5 h-5" />
-                    Request a Quote Now
+                    Request a Quote
                   </Link>
                 </div>
               </div>
