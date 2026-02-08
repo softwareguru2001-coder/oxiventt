@@ -47,10 +47,10 @@ export function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 w-[280px] max-w-[85vw] bg-white shadow-2xl md:hidden z-[9999] flex flex-col"
+              className="fixed top-0 right-0 h-full w-[280px] max-w-[85vw] bg-white shadow-2xl md:hidden z-[9999] overflow-hidden"
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 flex-shrink-0">
+              <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
                 <div className="relative w-24 h-8">
                   <Image
                     src="/oxiventt.png"
@@ -68,8 +68,8 @@ export function MobileNav() {
                 </button>
               </div>
 
-              {/* Menu Content - Scrollable */}
-              <div className="flex-1 overflow-y-auto">
+              {/* Menu Content - Scrollable with fixed height */}
+              <div className="h-[calc(100%-64px-80px)] overflow-y-auto">
                 <nav className="py-2">
                   {/* Main Menu Items */}
                   {mainMenuItems.map((item) => (
@@ -97,35 +97,27 @@ export function MobileNav() {
                       )}
                     </button>
 
-                    <AnimatePresence>
-                      {productsExpanded && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="overflow-hidden bg-gray-50"
+                    {productsExpanded && (
+                      <div className="bg-gray-50">
+                        <Link
+                          href="/products"
+                          onClick={() => setIsOpen(false)}
+                          className="block px-8 py-2.5 text-[14px] text-gray-600 hover:text-blue-600 transition-colors"
                         >
+                          All Products
+                        </Link>
+                        {productCategories.map((category) => (
                           <Link
-                            href="/products"
+                            key={category.href}
+                            href={category.href}
                             onClick={() => setIsOpen(false)}
                             className="block px-8 py-2.5 text-[14px] text-gray-600 hover:text-blue-600 transition-colors"
                           >
-                            All Products
+                            {category.label}
                           </Link>
-                          {productCategories.map((category) => (
-                            <Link
-                              key={category.href}
-                              href={category.href}
-                              onClick={() => setIsOpen(false)}
-                              className="block px-8 py-2.5 text-[14px] text-gray-600 hover:text-blue-600 transition-colors"
-                            >
-                              {category.label}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* WhatsApp Link */}
@@ -163,8 +155,8 @@ export function MobileNav() {
                 </div>
               </div>
 
-              {/* Bottom CTA */}
-              <div className="p-5 border-t border-gray-200 bg-gray-50 flex-shrink-0">
+              {/* Bottom CTA - Fixed at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-gray-200 bg-gray-50">
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
