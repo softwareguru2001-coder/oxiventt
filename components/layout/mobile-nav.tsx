@@ -25,10 +25,10 @@ export function MobileNav() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="md:hidden p-2 hover:bg-gray-50 rounded-md transition-colors"
+        className="md:hidden px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
         aria-label="Open menu"
       >
-        <Menu className="w-6 h-6 text-gray-700" />
+        Menu
       </button>
 
       <AnimatePresence>
