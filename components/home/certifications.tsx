@@ -47,11 +47,11 @@ export function Certifications() {
           {certifications.map((cert, index) => (
             <motion.button
               key={index}
-              onClick={() => window.open(cert.pdfUrl, '_blank', 'noopener,noreferrer')}
+              onClick={() => cert.pdfUrl === '/iso.pdf' && window.open(cert.pdfUrl, '_blank', 'noopener,noreferrer')}
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative p-6 sm:p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 transition-all duration-300"
-              aria-label={`View ${cert.title} Certificate`}
+              className={`group relative p-6 sm:p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 transition-all duration-300 ${cert.pdfUrl !== '/iso.pdf' ? 'cursor-default' : 'cursor-pointer'}`}
+              aria-label={`${cert.pdfUrl === '/iso.pdf' ? 'View' : ''} ${cert.title} Certificate`}
             >
               <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
                 <svg viewBox="0 0 200 200" className="w-full h-full">
@@ -87,9 +87,11 @@ export function Certifications() {
                   )}
                 </svg>
               </div>
-              <div className="mt-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Click to view
-              </div>
+              {cert.pdfUrl === '/iso.pdf' && (
+                <div className="mt-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Click to view
+                </div>
+              )}
             </motion.button>
           ))}
         </motion.div>

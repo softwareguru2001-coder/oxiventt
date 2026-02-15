@@ -31,10 +31,9 @@ export function CertificationCards() {
             </svg>
           </div>
         </button>
-        <button
-          onClick={() => window.open('/startupind.pdf', '_blank', 'noopener,noreferrer')}
-          className="group relative p-6 rounded-xl bg-white border-2 border-gray-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-          aria-label="View Startup India Certificate"
+        <div
+          className="group relative p-6 rounded-xl bg-white border-2 border-gray-200 cursor-default"
+          aria-label="Startup India Certificate"
         >
           <div className="w-32 h-32 flex items-center justify-center">
             <svg viewBox="0 0 200 200" className="w-full h-full">
@@ -54,7 +53,7 @@ export function CertificationCards() {
               <path d="M 165 80 L 180 95 L 165 110 Z" fill="#22C55E" />
             </svg>
           </div>
-        </button>
+        </div>
       </div>
     </div>
   );
