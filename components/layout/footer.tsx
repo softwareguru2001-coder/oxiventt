@@ -219,12 +219,20 @@ export function Footer() {
               className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/15 transition-all duration-300"
               aria-label="View Startup India Certificate"
             >
-              <svg viewBox="0 0 300 80" className="h-8 sm:h-10">
-                <text x="5" y="35" fill="#FF6B35" fontSize="32" fontWeight="bold" fontFamily="Arial">
-                  #startupindia
+              <svg viewBox="0 0 320 80" className="h-8 sm:h-10">
+                <text x="5" y="50" fill="#FF6B35" fontSize="36" fontWeight="700" fontFamily="Arial, sans-serif">
+                  #startup
                 </text>
-                <path d="M 260 20 L 280 35 L 260 50 Z" fill="#22C55E" />
-                <rect x="280" y="30" width="15" height="10" fill="#22C55E" />
+                <text x="175" y="50" fill="#FF6B35" fontSize="36" fontWeight="700" fontFamily="Arial, sans-serif">
+                  ind
+                </text>
+                <text x="245" y="50" fill="#4169E1" fontSize="36" fontWeight="700" fontFamily="Arial, sans-serif">
+                  i
+                </text>
+                <text x="260" y="50" fill="#FF6B35" fontSize="36" fontWeight="700" fontFamily="Arial, sans-serif">
+                  a
+                </text>
+                <path d="M 285 25 L 305 40 L 285 55 Z" fill="#22C55E" />
               </svg>
             </motion.button>
           </motion.div>

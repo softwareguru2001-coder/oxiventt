@@ -39,11 +39,19 @@ export function CertificationCards() {
           <div className="w-32 h-32 flex items-center justify-center">
             <svg viewBox="0 0 200 200" className="w-full h-full">
               <rect x="10" y="10" width="180" height="180" rx="10" fill="white" />
-              <text x="30" y="80" fill="#FF6B35" fontSize="20" fontWeight="bold" fontFamily="Arial">
-                #startupindia
+              <text x="20" y="100" fill="#FF6B35" fontSize="24" fontWeight="700" fontFamily="Arial, sans-serif">
+                #startup
               </text>
-              <path d="M 130 60 L 150 75 L 130 90 Z" fill="#22C55E" />
-              <rect x="150" y="70" width="15" height="10" fill="#22C55E" />
+              <text x="110" y="100" fill="#FF6B35" fontSize="24" fontWeight="700" fontFamily="Arial, sans-serif">
+                ind
+              </text>
+              <text x="150" y="100" fill="#4169E1" fontSize="24" fontWeight="700" fontFamily="Arial, sans-serif">
+                i
+              </text>
+              <text x="160" y="100" fill="#FF6B35" fontSize="24" fontWeight="700" fontFamily="Arial, sans-serif">
+                a
+              </text>
+              <path d="M 165 80 L 180 95 L 165 110 Z" fill="#22C55E" />
             </svg>
           </div>
         </button>
