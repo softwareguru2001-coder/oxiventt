@@ -190,38 +190,39 @@ export function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-wrap items-stretch justify-center gap-4 sm:gap-6 mb-6"
+            className="flex flex-wrap items-center justify-center gap-4 mb-6"
           >
             <motion.button
               onClick={() => window.open('/iso.pdf', '_blank', 'noopener,noreferrer')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-3 px-5 py-3 bg-gradient-to-br from-white/15 to-white/10 backdrop-blur-md rounded-xl border-2 border-white/20 hover:border-white/30 hover:bg-white/20 transition-all duration-300 shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-blue-400/50 hover:bg-white/10 transition-all duration-300"
               aria-label="View ISO 27001 Certificate"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-md">
-                <div className="w-[85%] h-[85%] rounded-full bg-white flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg flex-shrink-0">
+                <div className="w-[82%] h-[82%] rounded-full bg-white flex items-center justify-center">
                   <div className="text-center leading-none">
-                    <div className="text-blue-800 text-xs sm:text-sm font-bold">ISO</div>
-                    <div className="text-blue-800 text-[9px] sm:text-[11px] font-semibold">27001</div>
+                    <div className="text-blue-700 text-xs font-black">ISO</div>
+                    <div className="text-blue-700 text-[9px] font-bold mt-0.5">27001</div>
                   </div>
                 </div>
               </div>
-              <span className="text-sm sm:text-base text-white font-semibold tracking-wide">ISO 27001(ISMS)</span>
+              <span className="text-sm text-white font-semibold">ISO 27001(ISMS)</span>
             </motion.button>
 
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-3 px-5 py-3 bg-gradient-to-br from-white/15 to-white/10 backdrop-blur-md rounded-xl border-2 border-white/20 hover:border-white/30 transition-all duration-300 shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-orange-400/50 hover:bg-white/10 transition-all duration-300"
               aria-label="Startup India Certificate"
             >
-              <div className="h-10 sm:h-12 flex items-center justify-center">
+              <div className="h-10 w-16 bg-white rounded-lg flex items-center justify-center p-1.5 shadow-lg flex-shrink-0">
                 <img
                   src="/image copy copy copy copy copy.png"
                   alt="Startup India"
-                  className="h-full object-contain"
+                  className="w-full h-full object-contain"
                 />
               </div>
+              <span className="text-sm text-white font-semibold">Startup India</span>
             </motion.div>
           </motion.div>
 

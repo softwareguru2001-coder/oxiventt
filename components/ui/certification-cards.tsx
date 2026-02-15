@@ -11,39 +11,39 @@ export function CertificationCards() {
           Recognized for quality and excellence
         </p>
       </div>
-      <div className="flex flex-wrap justify-center items-stretch gap-6">
+      <div className="flex flex-wrap justify-center items-center gap-6">
         <button
           onClick={() => window.open('/iso.pdf', '_blank', 'noopener,noreferrer')}
-          className="group relative flex flex-col items-center gap-4 p-6 sm:p-8 rounded-xl bg-white border-2 border-blue-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 min-w-[240px]"
+          className="group relative flex items-center gap-4 px-6 py-4 rounded-xl bg-white border-2 border-blue-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
           aria-label="View ISO 27001 Certificate"
         >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-lg">
-            <div className="w-[85%] h-[85%] rounded-full bg-white flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-blue-800 text-lg sm:text-xl font-bold leading-tight">ISO</div>
-                <div className="text-blue-800 text-xs sm:text-sm font-semibold">27001</div>
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg flex-shrink-0">
+            <div className="w-[82%] h-[82%] rounded-full bg-white flex items-center justify-center">
+              <div className="text-center leading-none">
+                <div className="text-blue-700 text-sm sm:text-base font-black">ISO</div>
+                <div className="text-blue-700 text-xs font-bold mt-0.5">27001</div>
               </div>
             </div>
           </div>
-          <div className="text-center">
+          <div className="text-left">
             <h3 className="text-base sm:text-lg font-bold text-industrial-900 mb-1">ISO 27001(ISMS)</h3>
-            <p className="text-xs text-industrial-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="text-xs text-blue-600 group-hover:text-blue-700 transition-colors">
               Click to view
             </p>
           </div>
         </button>
         <div
-          className="group relative flex flex-col items-center gap-4 p-6 sm:p-8 rounded-xl bg-white border-2 border-orange-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 min-w-[240px]"
+          className="group relative flex items-center gap-4 px-6 py-4 rounded-xl bg-white border-2 border-orange-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
           aria-label="Startup India Certificate"
         >
-          <div className="w-28 h-16 sm:w-32 sm:h-20 flex items-center justify-center">
+          <div className="w-20 h-14 sm:w-24 sm:h-16 bg-white rounded-lg flex items-center justify-center shadow-lg flex-shrink-0">
             <img
               src="/image copy copy copy copy copy.png"
               alt="Startup India"
               className="w-full h-full object-contain"
             />
           </div>
-          <div className="text-center">
+          <div className="text-left">
             <h3 className="text-base sm:text-lg font-bold text-industrial-900">Startup India</h3>
           </div>
         </div>
