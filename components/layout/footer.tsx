@@ -109,21 +109,36 @@ export function Footer() {
                     onClick={() => window.open('/iso.pdf', '_blank', 'noopener,noreferrer')}
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group relative w-16 h-16 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                    className="group relative w-16 h-16 rounded-lg bg-white/90 hover:bg-white border border-white/20 hover:border-white flex items-center justify-center transition-all duration-300"
                     aria-label="View ISO 9001:2015 Certificate"
                   >
-                    <ShieldCheck className="w-6 h-6 mb-1" />
-                    <span className="text-[10px] font-semibold">ISO</span>
+                    <svg viewBox="0 0 200 200" className="w-12 h-12">
+                      <circle cx="100" cy="100" r="90" fill="white" />
+                      <circle cx="100" cy="100" r="85" fill="none" stroke="#003087" strokeWidth="3" />
+                      <text x="100" y="95" textAnchor="middle" fill="#003087" fontSize="36" fontWeight="bold" fontFamily="Arial">
+                        ISO
+                      </text>
+                      <text x="100" y="125" textAnchor="middle" fill="#003087" fontSize="20" fontFamily="Arial">
+                        9001
+                      </text>
+                    </svg>
                   </motion.button>
                   <motion.button
                     onClick={() => window.open('/startupind.pdf', '_blank', 'noopener,noreferrer')}
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group relative w-16 h-16 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                    className="group relative w-16 h-16 rounded-lg bg-white/90 hover:bg-white border border-white/20 hover:border-white flex items-center justify-center transition-all duration-300"
                     aria-label="View Startup India Certificate"
                   >
-                    <Award className="w-6 h-6 mb-1" />
-                    <span className="text-[10px] font-semibold">Startup</span>
+                    <svg viewBox="0 0 200 200" className="w-12 h-12">
+                      <rect x="20" y="20" width="160" height="160" rx="8" fill="white" />
+                      <text x="100" y="90" textAnchor="middle" fill="#FF6B00" fontSize="26" fontWeight="bold" fontFamily="Arial">
+                        STARTUP
+                      </text>
+                      <text x="100" y="120" textAnchor="middle" fill="#138808" fontSize="30" fontWeight="bold" fontFamily="Arial">
+                        INDIA
+                      </text>
+                    </svg>
                   </motion.button>
                 </div>
               </div>

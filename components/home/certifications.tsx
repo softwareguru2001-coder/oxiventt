@@ -1,38 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, ShieldCheck } from 'lucide-react';
-import { CertificationBadge } from '@/components/ui/certification-badge';
+import Image from 'next/image';
 
 const certifications = [
   {
-    title: 'ISO 9001:2015 Certified',
-    description: 'Quality Management System certification for manufacturing of industrial fans. Ensuring consistent quality and customer satisfaction.',
+    title: 'ISO 9001:2015',
     pdfUrl: '/iso.pdf',
-    icon: <ShieldCheck className="w-8 h-8 sm:w-10 sm:h-10" />,
+    logo: '/iso-logo.svg',
   },
   {
-    title: 'Startup India Recognized',
-    description: 'Officially recognized by the Department for Promotion of Industry and Internal Trade, Government of India.',
+    title: 'Startup India',
     pdfUrl: '/startupind.pdf',
-    icon: <Award className="w-8 h-8 sm:w-10 sm:h-10" />,
+    logo: '/startup-india-logo.svg',
   },
 ];
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
 
 export function Certifications() {
   return (
@@ -47,9 +29,6 @@ export function Certifications() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16"
         >
-          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-blue-500/20 text-blue-300 text-xs sm:text-sm font-semibold mb-3 sm:mb-4 border border-blue-500/30">
-            Trusted & Certified
-          </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
             Our Certifications
           </h2>
@@ -59,34 +38,55 @@ export function Certifications() {
         </motion.div>
 
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto"
-        >
-          {certifications.map((cert, index) => (
-            <motion.div key={index} variants={item}>
-              <CertificationBadge
-                title={cert.title}
-                description={cert.description}
-                pdfUrl={cert.pdfUrl}
-                icon={cert.icon}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-8 sm:mt-12 text-center"
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 max-w-3xl mx-auto"
         >
-          <p className="text-sm sm:text-base text-white/50 italic">
-            Click on any certificate to view the full document
-          </p>
+          {certifications.map((cert, index) => (
+            <motion.button
+              key={index}
+              onClick={() => window.open(cert.pdfUrl, '_blank', 'noopener,noreferrer')}
+              whileHover={{ scale: 1.05, y: -4 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative p-6 sm:p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 transition-all duration-300"
+              aria-label={`View ${cert.title} Certificate`}
+            >
+              <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+                <svg viewBox="0 0 200 200" className="w-full h-full">
+                  {cert.title === 'ISO 9001:2015' ? (
+                    <>
+                      <circle cx="100" cy="100" r="90" fill="white" />
+                      <circle cx="100" cy="100" r="85" fill="none" stroke="#003087" strokeWidth="2" />
+                      <text x="100" y="90" textAnchor="middle" fill="#003087" fontSize="32" fontWeight="bold" fontFamily="Arial">
+                        ISO
+                      </text>
+                      <text x="100" y="120" textAnchor="middle" fill="#003087" fontSize="20" fontFamily="Arial">
+                        9001:2015
+                      </text>
+                    </>
+                  ) : (
+                    <>
+                      <rect x="10" y="10" width="180" height="180" rx="10" fill="white" />
+                      <text x="100" y="80" textAnchor="middle" fill="#FF6B00" fontSize="24" fontWeight="bold" fontFamily="Arial">
+                        STARTUP
+                      </text>
+                      <text x="100" y="110" textAnchor="middle" fill="#138808" fontSize="28" fontWeight="bold" fontFamily="Arial">
+                        INDIA
+                      </text>
+                      <text x="100" y="135" textAnchor="middle" fill="#000080" fontSize="16" fontFamily="Arial">
+                        INITIATIVE
+                      </text>
+                    </>
+                  )}
+                </svg>
+              </div>
+              <div className="mt-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Click to view
+              </div>
+            </motion.button>
+          ))}
         </motion.div>
       </div>
 
