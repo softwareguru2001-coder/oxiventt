@@ -212,29 +212,18 @@ export function Footer() {
               <span className="text-xs sm:text-sm text-white font-medium">ISO 27001(ISMS)</span>
             </motion.button>
 
-            <motion.button
-              onClick={() => window.open('/startupind.pdf', '_blank', 'noopener,noreferrer')}
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/15 transition-all duration-300"
-              aria-label="View Startup India Certificate"
+              className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 cursor-default"
+              aria-label="Startup India Certificate"
             >
-              <svg viewBox="0 0 320 80" className="h-8 sm:h-10">
-                <text x="5" y="50" fill="#FF6B35" fontSize="36" fontWeight="700" fontFamily="Arial, sans-serif">
-                  #startup
-                </text>
-                <text x="175" y="50" fill="#FF6B35" fontSize="36" fontWeight="700" fontFamily="Arial, sans-serif">
-                  ind
-                </text>
-                <text x="245" y="50" fill="#4169E1" fontSize="36" fontWeight="700" fontFamily="Arial, sans-serif">
-                  i
-                </text>
-                <text x="260" y="50" fill="#FF6B35" fontSize="36" fontWeight="700" fontFamily="Arial, sans-serif">
-                  a
-                </text>
-                <path d="M 285 25 L 305 40 L 285 55 Z" fill="#22C55E" />
-              </svg>
-            </motion.button>
+              <img
+                src="/image copy copy copy copy copy.png"
+                alt="Startup India"
+                className="h-8 sm:h-10 object-contain"
+              />
+            </motion.div>
           </motion.div>
 
           <motion.p

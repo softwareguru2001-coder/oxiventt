@@ -68,22 +68,7 @@ export function Certifications() {
                       </text>
                     </>
                   ) : (
-                    <>
-                      <rect x="10" y="10" width="180" height="180" rx="10" fill="white" />
-                      <text x="20" y="100" fill="#FF6B35" fontSize="24" fontWeight="700" fontFamily="Arial, sans-serif">
-                        #startup
-                      </text>
-                      <text x="110" y="100" fill="#FF6B35" fontSize="24" fontWeight="700" fontFamily="Arial, sans-serif">
-                        ind
-                      </text>
-                      <text x="150" y="100" fill="#4169E1" fontSize="24" fontWeight="700" fontFamily="Arial, sans-serif">
-                        i
-                      </text>
-                      <text x="160" y="100" fill="#FF6B35" fontSize="24" fontWeight="700" fontFamily="Arial, sans-serif">
-                        a
-                      </text>
-                      <path d="M 165 80 L 180 95 L 165 110 Z" fill="#22C55E" />
-                    </>
+                    <image href="/image copy copy copy copy copy.png" width="200" height="200" />
                   )}
                 </svg>
               </div>
