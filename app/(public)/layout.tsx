@@ -1,4 +1,5 @@
 import { Footer } from '@/components/layout/footer';
+import { BackToTop } from '@/components/ui/back-to-top';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -50,6 +51,7 @@ export default function PublicLayout({
       </header>
       <main className="flex-1">{children}</main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

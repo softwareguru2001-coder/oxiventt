@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const certifications = [
   {
-    title: 'ISO 9001:2015',
+    title: 'ISO 27001 (ISMS)',
     pdfUrl: '/iso.pdf',
     logo: '/iso-logo.svg',
   },
@@ -55,29 +55,26 @@ export function Certifications() {
             >
               <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
                 <svg viewBox="0 0 200 200" className="w-full h-full">
-                  {cert.title === 'ISO 9001:2015' ? (
+                  {cert.title === 'ISO 27001 (ISMS)' ? (
                     <>
-                      <circle cx="100" cy="100" r="90" fill="white" />
-                      <circle cx="100" cy="100" r="85" fill="none" stroke="#003087" strokeWidth="2" />
-                      <text x="100" y="90" textAnchor="middle" fill="#003087" fontSize="32" fontWeight="bold" fontFamily="Arial">
+                      <circle cx="100" cy="100" r="90" fill="#003087" />
+                      <circle cx="100" cy="100" r="75" fill="white" />
+                      <circle cx="100" cy="100" r="70" fill="none" stroke="#003087" strokeWidth="2" />
+                      <text x="100" y="85" textAnchor="middle" fill="#003087" fontSize="28" fontWeight="bold" fontFamily="Arial">
                         ISO
                       </text>
-                      <text x="100" y="120" textAnchor="middle" fill="#003087" fontSize="20" fontFamily="Arial">
-                        9001:2015
+                      <text x="100" y="115" textAnchor="middle" fill="#003087" fontSize="18" fontFamily="Arial">
+                        27001
                       </text>
                     </>
                   ) : (
                     <>
                       <rect x="10" y="10" width="180" height="180" rx="10" fill="white" />
-                      <text x="100" y="80" textAnchor="middle" fill="#FF6B00" fontSize="24" fontWeight="bold" fontFamily="Arial">
-                        STARTUP
+                      <text x="30" y="80" fill="#FF6B35" fontSize="22" fontWeight="bold" fontFamily="Arial">
+                        #startupindia
                       </text>
-                      <text x="100" y="110" textAnchor="middle" fill="#138808" fontSize="28" fontWeight="bold" fontFamily="Arial">
-                        INDIA
-                      </text>
-                      <text x="100" y="135" textAnchor="middle" fill="#000080" fontSize="16" fontFamily="Arial">
-                        INITIATIVE
-                      </text>
+                      <path d="M 130 60 L 150 75 L 130 90 Z" fill="#22C55E" />
+                      <rect x="150" y="70" width="15" height="10" fill="#22C55E" />
                     </>
                   )}
                 </svg>
