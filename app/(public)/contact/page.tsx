@@ -1,4 +1,5 @@
 import { QuotationForm } from '@/components/forms/quotation-form';
+import { CertificationCards } from '@/components/ui/certification-cards';
 import { Mail, Phone, MapPin, Clock, Building2, FileText } from 'lucide-react';
 import { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -161,6 +162,8 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        <CertificationCards />
 
         <div className="bg-white rounded-2xl border border-gray-200/50 p-8 md:p-10 shadow-xl">
           <div className="text-center mb-8">

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, Award, ShieldCheck } from 'lucide-react';
 
 const footerLinks = {
   products: [
@@ -98,6 +98,34 @@ export function Footer() {
                     <social.icon className="w-5 h-5" />
                   </motion.a>
                 ))}
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-white/10">
+                <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-white/90">
+                  Certifications
+                </h4>
+                <div className="flex gap-3">
+                  <motion.button
+                    onClick={() => window.open('/iso.pdf', '_blank', 'noopener,noreferrer')}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group relative w-16 h-16 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                    aria-label="View ISO 9001:2015 Certificate"
+                  >
+                    <ShieldCheck className="w-6 h-6 mb-1" />
+                    <span className="text-[10px] font-semibold">ISO</span>
+                  </motion.button>
+                  <motion.button
+                    onClick={() => window.open('/startupind.pdf', '_blank', 'noopener,noreferrer')}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group relative w-16 h-16 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                    aria-label="View Startup India Certificate"
+                  >
+                    <Award className="w-6 h-6 mb-1" />
+                    <span className="text-[10px] font-semibold">Startup</span>
+                  </motion.button>
+                </div>
               </div>
             </motion.div>
           </div>
