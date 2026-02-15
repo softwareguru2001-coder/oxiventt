@@ -190,7 +190,7 @@ export function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-12 mb-6"
+            className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 mb-6"
           >
             <motion.button
               onClick={() => window.open('/iso.pdf', '_blank', 'noopener,noreferrer')}
@@ -227,38 +227,6 @@ export function Footer() {
                 <rect x="280" y="30" width="15" height="10" fill="#22C55E" />
               </svg>
             </motion.button>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20"
-            >
-              <svg viewBox="0 0 120 80" className="h-8 sm:h-10">
-                <g>
-                  <path d="M 20 40 Q 15 25 25 20 Q 35 15 45 25 L 50 30 L 45 35 Q 40 40 35 42 Q 30 44 25 42 Q 20 40 20 40 Z" fill="#1E293B" />
-                  <circle cx="45" cy="28" r="2" fill="white" />
-                  <path d="M 50 40 L 48 50 L 46 55 L 42 58 L 38 55 L 36 50 L 34 40" fill="none" stroke="#1E293B" strokeWidth="2" />
-                  <path d="M 36 50 L 28 52 L 24 54" fill="none" stroke="#1E293B" strokeWidth="1.5" />
-                  <path d="M 48 50 L 56 52 L 60 54" fill="none" stroke="#1E293B" strokeWidth="1.5" />
-                  <circle cx="40" cy="60" r="1.5" fill="#1E293B" />
-                </g>
-                <text x="70" y="30" fill="white" fontSize="12" fontWeight="bold" fontFamily="Arial">MADE IN</text>
-                <text x="70" y="45" fill="white" fontSize="12" fontWeight="bold" fontFamily="Arial">INDIA</text>
-              </svg>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20"
-            >
-              <svg viewBox="0 0 50 50" className="w-8 h-8 sm:w-10 sm:h-10">
-                <circle cx="25" cy="25" r="22" fill="#22C55E" />
-                <path d="M 15 25 L 22 32 L 35 18" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <div className="text-left">
-                <div className="text-xs sm:text-sm text-white font-bold leading-tight">SECURE</div>
-                <div className="text-[10px] sm:text-xs text-white/80 leading-tight">SSL ENCRYPTION</div>
-              </div>
-            </motion.div>
           </motion.div>
 
           <motion.p
@@ -268,7 +236,7 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="text-xs sm:text-sm text-white/60 text-center mb-4"
           >
-            Copyright © {currentYear} Munim ERP Private Limited. All Rights Reserved.
+            Copyright © {currentYear} OXIVENTT LLP. All Rights Reserved.
           </motion.p>
 
           <motion.div
