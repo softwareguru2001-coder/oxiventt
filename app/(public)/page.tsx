@@ -2,7 +2,6 @@ import { HeroSlider } from '@/components/home/hero-slider';
 import { StatsBar } from '@/components/home/stats-bar';
 import { FeaturedProducts } from '@/components/home/featured-products';
 import { ValuePropositions } from '@/components/home/value-propositions';
-import { Certifications } from '@/components/home/certifications';
 import { FAQSection } from '@/components/seo/faq-section';
 import { JsonLd } from '@/components/seo/json-ld';
 import { supabasePublicClient } from '@/lib/supabase/server';
@@ -182,7 +181,6 @@ export default async function HomePage() {
       <StatsBar />
       <FeaturedProducts products={featuredProducts} />
       <ValuePropositions />
-      <Certifications />
       <div className="container mx-auto px-3 sm:px-4 md:px-8 py-12 md:py-16">
         <FAQSection faqs={faqs} />
       </div>
