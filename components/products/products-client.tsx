@@ -109,6 +109,31 @@ export function ProductsClient({
 
   const hasActiveFilters = currentCategory || currentSearch || currentSort !== 'newest';
 
+  const filteredProducts = products
+    .filter((p) => {
+      const matchesCategory = !currentCategory || p.category === currentCategory;
+      const matchesSearch =
+        !currentSearch ||
+        p.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
+        (p.short_description || '').toLowerCase().includes(currentSearch.toLowerCase()) ||
+        p.category.toLowerCase().includes(currentSearch.toLowerCase());
+      return matchesCategory && matchesSearch;
+    })
+    .sort((a, b) => {
+      if (currentSort === 'name-asc') return a.name.localeCompare(b.name);
+      if (currentSort === 'name-desc') return b.name.localeCompare(a.name);
+      if (currentSort === 'price-asc') return (a.price || 0) - (b.price || 0);
+      if (currentSort === 'price-desc') return (b.price || 0) - (a.price || 0);
+      return 0;
+    });
+
+  const perPage = 12;
+  const computedTotalPages = Math.ceil(filteredProducts.length / perPage);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * perPage,
+    currentPage * perPage
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
       <div className="relative bg-gradient-to-br from-industrial-900 via-industrial-800 to-gray-900 text-white py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
@@ -241,7 +266,7 @@ export function ProductsClient({
               <div className="flex items-center gap-2">
                 <div className="px-4 py-2 bg-white rounded-lg border border-gray-200 shadow-sm">
                   <span className="text-sm font-medium text-gray-900">
-                    {totalCount} <span className="text-gray-500">products</span>
+                    {filteredProducts.length} <span className="text-gray-500">products</span>
                   </span>
                 </div>
               </div>
@@ -255,7 +280,7 @@ export function ProductsClient({
               </button>
             </div>
 
-            {products.length === 0 ? (
+            {paginatedProducts.length === 0 ? (
               <div className="text-center py-20">
                 <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
                   <Search className="w-10 h-10 text-gray-400" />
@@ -281,7 +306,7 @@ export function ProductsClient({
                   transition={{ duration: 0.5 }}
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12"
                 >
-                  {products.map((product, index) => (
+                  {paginatedProducts.map((product, index) => (
                     <motion.div
                       key={product.id}
                       initial={{ opacity: 0, y: 20 }}
@@ -296,7 +321,7 @@ export function ProductsClient({
                   ))}
                 </motion.div>
 
-                {totalPages > 1 && (
+                {computedTotalPages > 1 && (
                   <div className="flex items-center justify-center gap-2">
                     <button
                       onClick={() => handlePageChange(currentPage - 1)}
@@ -306,10 +331,10 @@ export function ProductsClient({
                       <ChevronLeft className="w-5 h-5" />
                     </button>
 
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                    {Array.from({ length: computedTotalPages }, (_, i) => i + 1).map((page) => {
                       if (
                         page === 1 ||
-                        page === totalPages ||
+                        page === computedTotalPages ||
                         (page >= currentPage - 1 && page <= currentPage + 1)
                       ) {
                         return (
@@ -337,7 +362,7 @@ export function ProductsClient({
 
                     <button
                       onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages}
+                      disabled={currentPage === computedTotalPages}
                       className="p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <ChevronRight className="w-5 h-5" />

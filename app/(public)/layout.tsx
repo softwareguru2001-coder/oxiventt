@@ -123,7 +123,7 @@ function Header() {
               </a>
 
               <Link
-                href="/contact"
+                href="/contact#quote"
                 className={`hidden md:inline-flex items-center px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
                   light
                     ? 'bg-white text-gray-900 hover:bg-gray-50 shadow-lg shadow-black/20'
@@ -180,7 +180,7 @@ function Header() {
                   +91 90991 99000
                 </a>
                 <Link
-                  href="/contact"
+                  href="/contact#quote"
                   className="flex items-center justify-center py-3.5 bg-gray-900 text-white text-sm font-semibold rounded-xl"
                 >
                   Get a Quote
