@@ -3,8 +3,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, MessageCircle, Download } from 'lucide-react';
+import { ArrowRight, MessageCircle, Download, FileText } from 'lucide-react';
 import { useState } from 'react';
+import { useQuoteModal } from '@/components/forms/quote-modal';
 
 interface Product {
   id: string;
@@ -27,6 +28,7 @@ interface ProductCardProps {
 export function ProductCard({ product, onBrochureClick }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { openQuoteModal } = useQuoteModal();
 
   const handleWhatsApp = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -44,6 +46,12 @@ export function ProductCard({ product, onBrochureClick }: ProductCardProps) {
     if (onBrochureClick && product.brochure_url) {
       onBrochureClick(product.id, product.name);
     }
+  };
+
+  const handleGetQuote = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openQuoteModal(product.name);
   };
 
   const hasMultipleImages = product.images && product.images.length > 1;
@@ -133,22 +141,32 @@ export function ProductCard({ product, onBrochureClick }: ProductCardProps) {
             </p>
           )}
 
-          <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
-            {product.is_price_visible && product.price ? (
-              <div>
-                <p className="text-[0.62rem] text-gray-400 uppercase tracking-wider mb-0.5">From</p>
-                <p className="text-base font-bold text-gray-900">
-                  ₹{Number(product.price).toLocaleString()}
-                </p>
-              </div>
-            ) : (
-              <p className="text-xs text-gray-500">Contact for price</p>
-            )}
+          <div className="pt-4 border-t border-gray-100 mt-auto space-y-3">
+            <div className="flex items-center justify-between">
+              {product.is_price_visible && product.price ? (
+                <div>
+                  <p className="text-[0.62rem] text-gray-400 uppercase tracking-wider mb-0.5">From</p>
+                  <p className="text-base font-bold text-gray-900">
+                    ₹{Number(product.price).toLocaleString()}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-xs text-gray-500">Contact for price</p>
+              )}
 
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-700 group-hover:text-gray-900 group-hover:gap-2 transition-all duration-200">
-              View details
-              <ArrowRight className="w-3.5 h-3.5" />
-            </span>
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-700 group-hover:text-gray-900 group-hover:gap-2 transition-all duration-200">
+                View details
+                <ArrowRight className="w-3.5 h-3.5" />
+              </span>
+            </div>
+
+            <button
+              onClick={handleGetQuote}
+              className="w-full flex items-center justify-center gap-2 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-colors shadow-sm shadow-blue-600/20"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              Get Quote
+            </button>
           </div>
         </div>
       </motion.div>

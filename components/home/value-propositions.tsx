@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Wind, Zap, Shield, Headphones, Award, Gauge } from 'lucide-react';
 import Link from 'next/link';
+import { useQuoteModal } from '@/components/forms/quote-modal';
 
 const values = [
   {
@@ -38,6 +39,8 @@ const values = [
 ];
 
 export function ValuePropositions() {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <section className="py-20 sm:py-28 lg:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
@@ -118,12 +121,12 @@ export function ValuePropositions() {
               </div>
             </div>
             <div className="flex-shrink-0 flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => openQuoteModal()}
                 className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-gray-900 text-sm font-bold rounded-lg hover:bg-gray-100 transition-colors"
               >
                 Get a Quote
-              </Link>
+              </button>
               <Link
                 href="/products"
                 className="inline-flex items-center justify-center px-7 py-3.5 border border-white/20 text-white text-sm font-medium rounded-lg hover:border-white/40 hover:bg-white/5 transition-colors"

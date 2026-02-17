@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { ProductCard } from '@/components/products/product-card';
 import { BrochureModal } from '@/components/products/brochure-modal';
+import { useQuoteModal } from '@/components/forms/quote-modal';
 
 interface Product {
   id: string;
@@ -34,6 +35,8 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
     productId: string;
     productName: string;
   } | null>(null);
+
+  const { openQuoteModal } = useQuoteModal();
 
   const handleBrochureClick = (productId: string, productName: string) => {
     const product = displayProducts.find((p) => p.id === productId);
@@ -108,12 +111,12 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
               All Products
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
-            <Link
-              href="/contact"
+            <button
+              onClick={() => openQuoteModal()}
               className="inline-flex items-center justify-center px-5 py-2.5 border border-gray-200 text-gray-700 text-sm font-medium rounded-full hover:border-gray-400 transition-colors"
             >
               Get Custom Quote
-            </Link>
+            </button>
           </div>
         </motion.div>
       </div>
