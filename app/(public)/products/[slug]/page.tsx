@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
       : `High-quality ${productData.name} for industrial ventilation. Available in various sizes and specifications. Contact us for custom solutions and quotations.`;
     const image = productData.images && productData.images.length > 0
       ? productData.images[0]
-      : `${baseUrl}/og-default.jpg`;
+      : `${baseUrl}/oxiventt.png`;
 
     const keywords = [
       productData.name,

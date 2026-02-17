@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     url: baseUrl,
     images: [
       {
-        url: `${baseUrl}/og-default.jpg`,
+        url: `${baseUrl}/oxiventt.png`,
         width: 1200,
         height: 630,
         alt: 'Oxiventt Industrial Fans and Ventilation Solutions',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Oxiventt - Premium Industrial Fans & Ventilation Solutions',
     description: 'Leading manufacturer of high-quality industrial fans and ventilation solutions in India.',
-    images: [`${baseUrl}/og-default.jpg`],
+    images: [`${baseUrl}/oxiventt.png`],
   },
   alternates: {
     canonical: baseUrl,

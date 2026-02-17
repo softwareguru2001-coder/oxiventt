@@ -25,6 +25,20 @@ export const metadata: Metadata = {
     description: 'Browse our comprehensive range of industrial fans, exhaust fans, and ventilation solutions.',
     type: 'website',
     url: `${baseUrl}/products`,
+    images: [
+      {
+        url: `${baseUrl}/oxiventt.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Oxiventt Industrial Fans Product Catalog',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Industrial Fans & Ventilation Products - Oxiventt',
+    description: 'Browse our comprehensive range of industrial fans, exhaust fans, and ventilation solutions.',
+    images: [`${baseUrl}/oxiventt.png`],
   },
   alternates: {
     canonical: `${baseUrl}/products`,

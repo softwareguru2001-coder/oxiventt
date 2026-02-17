@@ -240,6 +240,15 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
         throw new Error(data.error || 'Failed to save product');
       }
 
+      const productSlug = data.slug || slug;
+      if (productSlug) {
+        fetch('/api/indexnow', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ urls: [`${window.location.origin}/products/${productSlug}`] }),
+        }).catch(() => {});
+      }
+
       router.push('/admin/products');
       router.refresh();
     } catch (err) {

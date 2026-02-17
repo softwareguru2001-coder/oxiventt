@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     siteName: 'Oxiventt',
     images: [
       {
-        url: `${baseUrl}/og-default.jpg`,
+        url: `${baseUrl}/oxiventt.png`,
         width: 1200,
         height: 630,
-        alt: 'Oxiventt',
+        alt: 'Oxiventt - Industrial Fans & Ventilation Solutions',
       },
     ],
   },
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Oxiventt - High Quality Ventilation Solutions',
     description: 'Leading manufacturer of high-quality industrial fans, exhaust fans, and ventilation solutions.',
-    images: [`${baseUrl}/og-default.jpg`],
+    images: [`${baseUrl}/oxiventt.png`],
   },
   robots: {
     index: true,
@@ -61,6 +61,11 @@ export const metadata: Metadata = {
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: {
+      ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+        ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+        : {}),
+    },
   },
   icons: {
     icon: '/oxiventt.png',
