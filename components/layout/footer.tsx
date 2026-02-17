@@ -47,9 +47,9 @@ export function Footer() {
                 <Image
                   src="/oxiventt.png"
                   alt="Oxiventt"
-                  width={150}
-                  height={50}
-                  className="object-contain h-11 w-auto"
+                  width={200}
+                  height={60}
+                  className="object-contain h-14 w-auto"
                 />
               </div>
             </div>
