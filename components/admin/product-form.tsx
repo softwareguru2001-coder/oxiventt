@@ -50,6 +50,7 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [brochurePath, setBrochurePath] = useState(product?.brochure_path || '');
   const [brochureFile, setBrochureFile] = useState<File | null>(null);
+  const [videoUrl, setVideoUrl] = useState(product?.video_url || '');
 
   const generateSlug = (text: string) => {
     return text
@@ -217,6 +218,7 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
         featured,
         images: uploadedImages,
         brochure_path: uploadedBrochurePath || null,
+        video_url: videoUrl || null,
       };
 
       const endpoint = isEdit
@@ -511,6 +513,21 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
               {imageFiles.length} file(s) selected
             </p>
           )}
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg border p-6 space-y-6">
+        <h2 className="text-xl font-bold">YouTube Video</h2>
+        <div>
+          <label className="block text-sm font-semibold mb-2">YouTube Video URL</label>
+          <input
+            type="url"
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+            placeholder="https://www.youtube.com/watch?v=..."
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <p className="text-xs text-gray-500 mt-1">Paste a YouTube video URL to show a product demo video on the product page.</p>
         </div>
       </div>
 
