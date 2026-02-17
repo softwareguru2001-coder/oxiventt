@@ -130,18 +130,18 @@ export default function HeroSlidesPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Hero Slides</h1>
-          <p className="text-gray-600 mt-1">Manage homepage hero slider images and content</p>
+          <h1 className="text-2xl font-bold text-gray-900">Hero Slides</h1>
+          <p className="text-sm text-gray-500 mt-0.5">Manage homepage hero slider</p>
         </div>
         <Link href="/admin/slides/new">
-          <Button className="gap-2">
+          <Button className="gap-2 rounded-xl shadow-sm">
             <Plus className="w-4 h-4" />
             Add New Slide
           </Button>
         </Link>
       </div>
 
-      <div className="bg-white rounded-lg shadow">
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b">

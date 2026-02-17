@@ -94,12 +94,12 @@ export default function CategoriesPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Categories</h1>
-          <p className="text-gray-600 mt-1">Manage product categories</p>
+          <h1 className="text-2xl font-bold text-gray-900">Categories</h1>
+          <p className="text-sm text-gray-500 mt-0.5">Manage product categories</p>
         </div>
         <Link href="/admin/categories/new">
-          <Button>
-            <Plus className="mr-2 h-4 w-4" />
+          <Button className="gap-2 rounded-xl shadow-sm">
+            <Plus className="h-4 w-4" />
             New Category
           </Button>
         </Link>
@@ -119,8 +119,8 @@ export default function CategoriesPage() {
           </Button>
         </div>
       ) : (
-        <div className="bg-white shadow-sm rounded-lg overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
+        <div className="bg-white shadow-sm rounded-xl border border-gray-200 overflow-hidden">
+          <table className="min-w-full divide-y divide-gray-100">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">

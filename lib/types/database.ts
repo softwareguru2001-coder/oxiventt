@@ -77,6 +77,10 @@ export interface Database {
           city: string | null
           message: string | null
           utm: Json | null
+          status: string
+          notes: string | null
+          next_call_date: string | null
+          assigned_to: string | null
           created_at: string
         }
         Insert: {
@@ -90,6 +94,10 @@ export interface Database {
           city?: string | null
           message?: string | null
           utm?: Json | null
+          status?: string
+          notes?: string | null
+          next_call_date?: string | null
+          assigned_to?: string | null
           created_at?: string
         }
         Update: {
@@ -103,6 +111,10 @@ export interface Database {
           city?: string | null
           message?: string | null
           utm?: Json | null
+          status?: string
+          notes?: string | null
+          next_call_date?: string | null
+          assigned_to?: string | null
           created_at?: string
         }
       }
