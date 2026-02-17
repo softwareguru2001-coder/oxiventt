@@ -76,10 +76,10 @@ function Header() {
                 <Image
                   src="/oxiventt.png"
                   alt="Oxiventt"
-                  width={130}
-                  height={44}
+                  width={160}
+                  height={52}
                   className={`object-contain transition-all duration-300 ${
-                    light ? 'h-9 w-auto' : 'h-9 w-auto'
+                    light ? 'h-11 w-auto' : 'h-11 w-auto'
                   }`}
                   priority
                 />
