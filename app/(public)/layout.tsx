@@ -48,14 +48,18 @@ function Header() {
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
           <div className="flex items-center justify-between h-[68px] sm:h-20">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <div className="relative w-[110px] sm:w-[130px] lg:w-[145px] h-10 sm:h-11">
+              <div className={`relative w-[110px] sm:w-[130px] lg:w-[145px] h-10 sm:h-11 rounded-lg transition-all duration-500 ${
+                !scrolled && isHomePage
+                  ? 'bg-white/90 backdrop-blur-sm shadow-md px-2 py-1 w-[118px] sm:w-[140px] lg:w-[156px]'
+                  : ''
+              }`}>
                 <Image
                   src="/oxiventt.png"
                   alt="Oxiventt"
                   fill
                   className="object-contain object-left transition-all duration-500"
                   priority
-                  sizes="145px"
+                  sizes="156px"
                 />
               </div>
             </Link>
