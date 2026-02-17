@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ArrowRight, Shield, Award, Zap } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useQuoteModal } from '@/components/forms/quote-modal';
 
 interface Slide {
   id: string;
@@ -64,6 +65,7 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
   const slides = propSlides && propSlides.length > 0 ? propSlides : defaultSlides;
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const { openQuoteModal } = useQuoteModal();
 
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -158,12 +160,12 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
                   Explore Products
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
                 </Link>
-                <Link
-                  href="/contact"
+                <button
+                  onClick={() => openQuoteModal()}
                   className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white text-sm font-semibold rounded-lg hover:border-white/60 hover:bg-white/10 transition-all duration-200 backdrop-blur-sm"
                 >
                   Request a Quote
-                </Link>
+                </button>
               </div>
             </motion.div>
           </AnimatePresence>

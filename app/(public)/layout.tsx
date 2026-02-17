@@ -2,6 +2,7 @@
 
 import { Footer } from '@/components/layout/footer';
 import { BackToTop } from '@/components/ui/back-to-top';
+import { QuoteModalProvider, useQuoteModal } from '@/components/forms/quote-modal';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -12,6 +13,7 @@ function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { openQuoteModal } = useQuoteModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -122,8 +124,8 @@ function Header() {
                 +91 90991 99000
               </a>
 
-              <Link
-                href="/contact#quote"
+              <button
+                onClick={() => openQuoteModal()}
                 className={`hidden md:inline-flex items-center px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
                   light
                     ? 'bg-white text-gray-900 hover:bg-gray-50 shadow-lg shadow-black/20'
@@ -131,7 +133,7 @@ function Header() {
                 }`}
               >
                 Get Quote
-              </Link>
+              </button>
 
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
@@ -179,12 +181,12 @@ function Header() {
                   <Phone className="w-4 h-4 text-gray-400" />
                   +91 90991 99000
                 </a>
-                <Link
-                  href="/contact#quote"
-                  className="flex items-center justify-center py-3.5 bg-gray-900 text-white text-sm font-semibold rounded-xl"
+                <button
+                  onClick={() => { setMobileOpen(false); openQuoteModal(); }}
+                  className="flex items-center justify-center w-full py-3.5 bg-gray-900 text-white text-sm font-semibold rounded-xl"
                 >
                   Get a Quote
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -200,11 +202,13 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-1">{children}</main>
-      <Footer />
-      <BackToTop />
-    </div>
+    <QuoteModalProvider>
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <BackToTop />
+      </div>
+    </QuoteModalProvider>
   );
 }
