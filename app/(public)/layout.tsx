@@ -53,9 +53,7 @@ function Header() {
                   src="/oxiventt.png"
                   alt="Oxiventt"
                   fill
-                  className={`object-contain object-left transition-all duration-500 ${
-                    scrolled || !isHomePage ? '' : 'brightness-0 invert'
-                  }`}
+                  className="object-contain object-left transition-all duration-500"
                   priority
                   sizes="145px"
                 />
