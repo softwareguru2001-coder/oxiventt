@@ -69,16 +69,24 @@ function LeadDetailDrawer({
   const handleSave = async () => {
     setSaving(true);
     try {
-      const res = await fetch(`/api/admin/leads/${lead.id}`, {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      const res = await fetch(`${supabaseUrl}/functions/v1/admin-leads?id=${lead.id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabaseKey}`,
+        },
         body: JSON.stringify({ notes, next_call_date: nextCallDate || null, status }),
       });
-      if (!res.ok) throw new Error('Failed to save');
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Failed to save');
+      }
       onUpdate(lead.id, { notes, next_call_date: nextCallDate || null, status });
       toast.success('Lead updated');
-    } catch {
-      toast.error('Failed to update lead');
+    } catch (e: any) {
+      toast.error(e?.message || 'Failed to update lead');
     } finally {
       setSaving(false);
     }
@@ -234,7 +242,12 @@ export function LeadsDashboard({ leads: initialLeads, products }: LeadsDashboard
     if (!confirm('Delete this lead? This cannot be undone.')) return;
     setDeletingLeadId(leadId);
     try {
-      const res = await fetch(`/api/admin/leads/${leadId}`, { method: 'DELETE' });
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      const res = await fetch(`${supabaseUrl}/functions/v1/admin-leads?id=${leadId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${supabaseKey}` },
+      });
       if (!res.ok) throw new Error();
       setLeads((prev) => prev.filter((l) => l.id !== leadId));
       if (selectedLead?.id === leadId) setSelectedLead(null);
@@ -248,9 +261,14 @@ export function LeadsDashboard({ leads: initialLeads, products }: LeadsDashboard
 
   const handleStatusChange = async (leadId: string, newStatus: string) => {
     try {
-      const res = await fetch(`/api/admin/leads/${leadId}`, {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      const res = await fetch(`${supabaseUrl}/functions/v1/admin-leads?id=${leadId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabaseKey}`,
+        },
         body: JSON.stringify({ status: newStatus }),
       });
       if (!res.ok) throw new Error();

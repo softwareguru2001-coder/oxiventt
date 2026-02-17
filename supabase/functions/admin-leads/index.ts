@@ -3,7 +3,7 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, PUT, OPTIONS",
+  "Access-Control-Allow-Methods": "GET, PUT, PATCH, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
@@ -36,7 +36,7 @@ Deno.serve(async (req: Request) => {
       });
     }
 
-    if (req.method === "PUT") {
+    if (req.method === "PATCH" || req.method === "PUT") {
       if (!id) {
         return new Response(JSON.stringify({ error: "Lead ID required" }), {
           status: 400,
@@ -44,14 +44,40 @@ Deno.serve(async (req: Request) => {
         });
       }
       const body = await req.json();
+      const allowed = ["status", "notes", "next_call_date", "assigned_to"];
+      const update: Record<string, unknown> = {};
+      for (const key of allowed) {
+        if (key in body) update[key] = body[key];
+      }
+      if (Object.keys(update).length === 0) {
+        return new Response(JSON.stringify({ error: "No valid fields to update" }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
       const { data, error } = await supabase
         .from("leads")
-        .update({ status: body.status })
+        .update(update)
         .eq("id", id)
         .select()
         .single();
       if (error) throw error;
       return new Response(JSON.stringify({ success: true, data }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (req.method === "DELETE") {
+      if (!id) {
+        return new Response(JSON.stringify({ error: "Lead ID required" }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const { error } = await supabase.from("leads").delete().eq("id", id);
+      if (error) throw error;
+      return new Response(JSON.stringify({ success: true }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
