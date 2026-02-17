@@ -47,17 +47,19 @@ function Header() {
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
           <div className="flex items-center justify-between h-[68px] sm:h-20">
-            <Link href="/" className="flex-shrink-0">
-              <Image
-                src="/oxiventt.png"
-                alt="Oxiventt"
-                width={148}
-                height={46}
-                className={`object-contain w-[112px] sm:w-[136px] lg:w-[148px] h-auto transition-all duration-500 ${
-                  scrolled || !isHomePage ? '' : 'brightness-0 invert'
-                }`}
-                priority
-              />
+            <Link href="/" className="flex-shrink-0 flex items-center">
+              <div className="relative w-[110px] sm:w-[130px] lg:w-[145px] h-10 sm:h-11">
+                <Image
+                  src="/oxiventt.png"
+                  alt="Oxiventt"
+                  fill
+                  className={`object-contain object-left transition-all duration-500 ${
+                    scrolled || !isHomePage ? '' : 'brightness-0 invert'
+                  }`}
+                  priority
+                  sizes="145px"
+                />
+              </div>
             </Link>
 
             <nav className="hidden md:flex items-center">
