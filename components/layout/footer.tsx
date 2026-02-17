@@ -2,258 +2,175 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, Award, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from 'lucide-react';
 
-const footerLinks = {
-  products: [
-    { name: 'All Products', href: '/products' },
-    { name: 'Axial Fans', href: '/products?category=axial' },
-    { name: 'Centrifugal Fans', href: '/products?category=centrifugal' },
-    { name: 'Exhaust Systems', href: '/products?category=exhaust' },
-  ],
-  company: [
-    { name: 'Home', href: '/' },
-    { name: 'Products', href: '/products' },
-    { name: 'Contact Us', href: '/contact' },
-  ],
-  support: [
-    { name: 'Get Quote', href: '/contact' },
-    { name: 'WhatsApp', href: 'https://wa.me/919099199000' },
-    { name: 'Email Us', href: 'mailto:info@oxiventt.com' },
-  ],
-};
+const products = [
+  { name: 'All Products', href: '/products' },
+  { name: 'Axial Fans', href: '/products?category=axial' },
+  { name: 'Centrifugal Fans', href: '/products?category=centrifugal' },
+  { name: 'Exhaust Systems', href: '/products?category=exhaust' },
+];
 
-const socialLinks = [
-  { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+const company = [
+  { name: 'Home', href: '/' },
+  { name: 'Products', href: '/products' },
+  { name: 'Contact Us', href: '/contact' },
+];
+
+const support = [
+  { name: 'Get Quote', href: '/contact' },
+  { name: 'WhatsApp Us', href: 'https://wa.me/919099199000', external: true },
+  { name: 'Email Us', href: 'mailto:info@oxiventt.com', external: true },
+];
+
+const social = [
   { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
   { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+  { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
 ];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-br from-industrial-900 via-industrial-800 to-industrial-900 text-white">
-      <div className="container mx-auto px-3 sm:px-4 md:px-8 py-12 sm:py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-10 sm:mb-12">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="relative w-40 h-14 sm:w-48 sm:h-16 mb-4 sm:mb-6 brightness-0 invert">
-                <Image
-                  src="/oxiventt.png"
-                  alt="Oxiventt"
-                  fill
-                  className="object-contain object-left"
-                />
-              </div>
-              <p className="text-sm sm:text-base text-white/70 mb-4 sm:mb-6 leading-relaxed">
-                Leading manufacturer of high-performance industrial ventilation solutions.
-                Engineering excellence since 1999.
-              </p>
+    <footer className="bg-gray-950 text-white">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
+        <div className="pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 border-b border-white/8">
+          <div className="md:col-span-2 lg:col-span-1">
+            <div className="mb-6">
+              <Image
+                src="/oxiventt.png"
+                alt="Oxiventt"
+                width={140}
+                height={44}
+                className="object-contain brightness-0 invert w-[120px] h-auto"
+              />
+            </div>
+            <p className="text-sm text-gray-400 leading-relaxed mb-6 max-w-xs">
+              Leading manufacturer of high-performance industrial ventilation solutions.
+              Engineering excellence since 1999.
+            </p>
 
-              <div className="space-y-2.5 sm:space-y-3 mb-4 sm:mb-6">
-                <div className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-white/70 hover:text-white/90 transition-colors">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" />
-                  <span>202,203, Om textile park, v-1 Umbel-parb road, TA. Kamrej, Surat, Gujarat, India - 394325</span>
-                </div>
+            <div className="space-y-3 text-sm text-gray-400 mb-7">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" />
+                <span>202-203, Om Textile Park, V-1 Umbel-Parb Road, TA. Kamrej, Surat, Gujarat — 394325</span>
+              </div>
+              <a href="tel:+919099199000" className="flex items-center gap-2.5 hover:text-white transition-colors">
+                <Phone className="w-4 h-4 text-gray-500 flex-shrink-0" />
+                +91 90991 99000
+              </a>
+              <a href="mailto:info@oxiventt.com" className="flex items-center gap-2.5 hover:text-white transition-colors">
+                <Mail className="w-4 h-4 text-gray-500 flex-shrink-0" />
+                info@oxiventt.com
+              </a>
+              <div className="flex items-center gap-2.5 text-xs text-gray-500">
+                <span className="font-medium text-gray-400">GST:</span>
+                24AAKFO0322P1Z6
+              </div>
+            </div>
+
+            <div className="flex gap-2.5">
+              {social.map((s) => (
                 <a
-                  href="tel:+919099199000"
-                  className="flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-white/70 hover:text-white/90 transition-colors"
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-lg bg-white/6 border border-white/8 flex items-center justify-center text-gray-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-200"
                 >
-                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                  <span>+91 90991 99000</span>
+                  <s.icon className="w-4 h-4" />
                 </a>
-                <a
-                  href="mailto:info@oxiventt.com"
-                  className="flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-white/70 hover:text-white/90 transition-colors"
-                >
-                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                  <span>info@oxiventt.com</span>
-                </a>
-                <div className="flex items-center gap-3 text-sm text-white/70">
-                  <span className="font-semibold text-white/90">GST No:</span>
-                  <span>24AAKFO0322P1Z6</span>
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-10 h-10 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-                  >
-                    <social.icon className="w-5 h-5" />
-                  </motion.a>
-                ))}
-              </div>
-
-            </motion.div>
+              ))}
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-white/90">
-              Products
-            </h4>
+          <div>
+            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-[0.14em] mb-5">Products</h4>
             <ul className="space-y-3">
-              {footerLinks.products.map((link) => (
+              {products.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
-                  >
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors duration-200">
                     {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-white/90">
-              Company
-            </h4>
+          <div>
+            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-[0.14em] mb-5">Company</h4>
             <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
+              {company.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
-                  >
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors duration-200">
                     {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-white/90">
-              Support
-            </h4>
+          <div>
+            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-[0.14em] mb-5">Support</h4>
             <ul className="space-y-3">
-              {footerLinks.support.map((link) => (
+              {support.map((link) => (
                 <li key={link.name}>
-                  {link.href.startsWith('http') || link.href.startsWith('mailto:') ? (
+                  {link.external ? (
                     <a
                       href={link.href}
                       target={link.href.startsWith('http') ? '_blank' : undefined}
                       rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                      className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       {link.name}
                     </a>
                   ) : (
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
-                    >
+                    <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors duration-200">
                       {link.name}
                     </Link>
                   )}
                 </li>
               ))}
             </ul>
-          </motion.div>
-        </div>
 
-        <div className="pt-8 border-t border-white/10">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-wrap items-stretch justify-center gap-3 sm:gap-4 mb-6"
-          >
-            <motion.button
-              onClick={() => window.open('/iso.pdf', '_blank', 'noopener,noreferrer')}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-3 px-4 sm:px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl border-2 border-white/10 hover:border-blue-400/40 hover:bg-white/10 transition-all duration-300 shadow-lg"
-              aria-label="View ISO 27001 Certificate"
-            >
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 p-0.5 shadow-xl flex-shrink-0">
-                <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                  <div className="text-center leading-none">
-                    <div className="text-blue-700 text-xs sm:text-sm font-black">ISO</div>
-                    <div className="text-blue-700 text-[9px] sm:text-[10px] font-bold mt-0.5">27001</div>
+            <div className="mt-8">
+              <h4 className="text-xs font-bold text-gray-400 uppercase tracking-[0.14em] mb-4">Certifications</h4>
+              <div className="flex flex-col gap-2.5">
+                <button
+                  onClick={() => window.open('/iso.pdf', '_blank', 'noopener,noreferrer')}
+                  className="inline-flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors duration-200 text-left"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-white/8 border border-white/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[0.6rem] font-black text-gray-300 leading-none text-center">ISO<br/>27001</span>
                   </div>
+                  ISO 27001 (ISMS)
+                </button>
+                <div className="inline-flex items-center gap-2.5 text-sm text-gray-400">
+                  <div className="w-8 h-8 rounded-lg bg-white flex-shrink-0 flex items-center justify-center p-1">
+                    <img
+                      src="/image copy copy copy copy copy.png"
+                      alt="Startup India"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  Startup India
                 </div>
               </div>
-              <span className="text-sm sm:text-base text-white font-semibold">ISO 27001(ISMS)</span>
-            </motion.button>
+            </div>
+          </div>
+        </div>
 
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-3 px-4 sm:px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl border-2 border-white/10 hover:border-orange-400/40 hover:bg-white/10 transition-all duration-300 shadow-lg"
-              aria-label="Startup India Certificate"
-            >
-              <div className="h-10 w-16 sm:h-11 sm:w-18 bg-white rounded-lg flex items-center justify-center p-1.5 shadow-xl flex-shrink-0">
-                <img
-                  src="/image copy copy copy copy copy.png"
-                  alt="Startup India"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="text-sm sm:text-base text-white font-semibold">Startup India</span>
-            </motion.div>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-xs sm:text-sm text-white/60 text-center mb-4"
-          >
-            Copyright © {currentYear} OXIVENTT LLP. All Rights Reserved.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex justify-center"
-          >
-            <Link
-              href="/admin/login"
-              className="text-xs sm:text-sm text-white/60 hover:text-white transition-colors duration-300"
-            >
-              Admin Login
-            </Link>
-          </motion.div>
+        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-500">
+            Copyright &copy; {year} OXIVENTT LLP. All Rights Reserved.
+          </p>
+          <Link href="/admin/login" className="text-xs text-gray-600 hover:text-gray-400 transition-colors duration-200">
+            Admin
+          </Link>
         </div>
       </div>
-
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
     </footer>
   );
 }

@@ -6,25 +6,6 @@ import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#333" offset="20%" />
-      <stop stop-color="#222" offset="50%" />
-      <stop stop-color="#333" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#333" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`;
-
-const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str);
-
 interface Slide {
   id: string;
   title: string;
@@ -41,34 +22,34 @@ interface HeroSliderProps {
 const defaultSlides: Slide[] = [
   {
     id: '1',
-    title: 'Industrial Excellence in Ventilation',
-    subtitle: 'High-performance fans engineered for demanding environments',
+    title: 'Industrial Ventilation Engineered for Excellence',
+    subtitle: 'High-performance fans built for demanding environments — from textile mills to chemical plants',
     image_url: 'https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    gradient: 'from-industrial-900/90 via-industrial-800/80 to-transparent',
+    gradient: 'from-slate-950/85 via-slate-900/50 to-transparent',
     display_order: 1,
   },
   {
     id: '2',
-    title: 'Cutting-Edge Air Movement Technology',
-    subtitle: 'Precision-engineered solutions for optimal airflow and energy efficiency',
+    title: 'Precision Air Movement Technology',
+    subtitle: 'Optimized blade geometry and advanced motors delivering consistent, energy-efficient airflow',
     image_url: 'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    gradient: 'from-blue-900/90 via-blue-800/80 to-transparent',
+    gradient: 'from-slate-950/80 via-slate-900/45 to-transparent',
     display_order: 2,
   },
   {
     id: '3',
-    title: 'Built for Industrial Strength',
-    subtitle: 'Robust construction meets advanced aerodynamic design',
+    title: 'Built to Operate. Built to Last.',
+    subtitle: 'Robust construction meeting ISO 27001 standards for every industrial application',
     image_url: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    gradient: 'from-slate-900/90 via-slate-800/80 to-transparent',
+    gradient: 'from-slate-950/85 via-slate-900/50 to-transparent',
     display_order: 3,
   },
   {
     id: '4',
-    title: 'Trusted Across Industries',
-    subtitle: 'Delivering reliable performance for manufacturing, warehousing, and more',
+    title: 'Trusted Across India',
+    subtitle: '5000+ installations across manufacturing, warehousing, pharma, and commercial sectors',
     image_url: 'https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    gradient: 'from-gray-900/90 via-gray-800/80 to-transparent',
+    gradient: 'from-slate-950/80 via-slate-900/45 to-transparent',
     display_order: 4,
   },
 ];
@@ -88,14 +69,13 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
 
   useEffect(() => {
     if (isHovered) return;
-
-    const interval = setInterval(nextSlide, 5000);
+    const interval = setInterval(nextSlide, 6000);
     return () => clearInterval(interval);
   }, [isHovered, nextSlide]);
 
   return (
     <div
-      className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden bg-industrial-950"
+      className="relative w-full h-screen min-h-[600px] max-h-[900px] overflow-hidden bg-slate-950"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -105,154 +85,111 @@ export function HeroSlider({ slides: propSlides }: HeroSliderProps = {}) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
           className="absolute inset-0"
         >
-          <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            initial={{ scale: 1.05 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 7, ease: 'linear' }}
+            className="absolute inset-0"
+          >
             <Image
               src={slides[current].image_url}
               alt={slides[current].title}
               fill
               priority={current === 0}
-              quality={85}
+              quality={90}
               sizes="100vw"
-              placeholder="blur"
-              blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1920, 1080))}`}
-              className="object-cover"
-              style={{
-                transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                transition: 'transform 8000ms ease-in-out',
-              }}
+              className="object-cover object-center"
             />
-          </div>
-
+          </motion.div>
           <div className={`absolute inset-0 bg-gradient-to-r ${slides[current].gradient}`} />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-          <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-3 sm:px-4 md:px-8 lg:px-12 z-10">
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.8 }}
-                  className="max-w-2xl"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium mb-4 sm:mb-6"
-                  >
-                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    <span className="hidden sm:inline">Trusted by Industry Leaders</span>
-                    <span className="sm:hidden">Trusted Leaders</span>
-                  </motion.div>
-
-                  <motion.h1
-                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-[1.1]"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.8 }}
-                  >
-                    {slides[current].title}
-                  </motion.h1>
-
-                  <motion.p
-                    className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 mb-6 sm:mb-8 md:mb-10 leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.8 }}
-                  >
-                    {slides[current].subtitle}
-                  </motion.p>
-
-                  <motion.div
-                    className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.8 }}
-                  >
-                    <Link
-                      href="/products"
-                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base md:text-lg font-bold text-white overflow-hidden rounded-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-cyan-600 hover:shadow-2xl hover:scale-105"
-                    >
-                      <span className="relative z-10 flex items-center gap-2">
-                        Explore Products
-                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </Link>
-
-                    <Link
-                      href="/contact"
-                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base md:text-lg font-bold text-white overflow-hidden rounded-xl transition-all duration-300 border-2 border-white/30 backdrop-blur-md hover:border-white hover:bg-white/10 hover:scale-105"
-                    >
-                      <span className="relative z-10">Request Quote</span>
-                    </Link>
-                  </motion.div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1, duration: 0.8 }}
-                  className="hidden lg:grid grid-cols-2 gap-4"
-                >
-                  {[
-                    { icon: '⚡', text: 'Energy Efficient', desc: 'Save up to 40% on power' },
-                    { icon: '🔧', text: 'Easy Installation', desc: 'Quick setup & maintenance' },
-                    { icon: '🛡️', text: 'Built to Last', desc: '10+ years warranty' },
-                    { icon: '🌍', text: 'Global Standards', desc: 'ISO certified quality' },
-                  ].map((feature, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.2 + index * 0.1, duration: 0.6 }}
-                      className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300"
-                    >
-                      <div className="text-3xl mb-3">{feature.icon}</div>
-                      <h3 className="text-white font-bold text-lg mb-1">{feature.text}</h3>
-                      <p className="text-white/70 text-sm">{feature.desc}</p>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </div>
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/25" />
         </motion.div>
       </AnimatePresence>
 
-      <button
-        onClick={prevSlide}
-        className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3 md:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-glow hover:scale-110 transition-all duration-300"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-      </button>
+      <div className="absolute inset-0 flex flex-col justify-end pb-20 sm:pb-24 md:pb-28 lg:pb-32">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`content-${current}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1] }}
+              className="max-w-2xl xl:max-w-3xl"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div className="h-px w-7 bg-white/50" />
+                <span className="text-white/60 text-xs font-medium tracking-[0.18em] uppercase">
+                  Oxiventt — Industrial Ventilation
+                </span>
+              </div>
 
-      <button
-        onClick={nextSlide}
-        className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3 md:p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:shadow-glow hover:scale-110 transition-all duration-300"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-      </button>
+              <h1 className="text-[2rem] sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-white mb-5 leading-[1.07] tracking-tight">
+                {slides[current].title}
+              </h1>
 
-      <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-2 sm:gap-3">
+              <p className="text-sm sm:text-base lg:text-lg text-white/75 mb-8 leading-relaxed max-w-lg">
+                {slides[current].subtitle}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/products"
+                  className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-gray-900 text-sm font-semibold rounded-full hover:bg-gray-100 transition-all duration-200"
+                >
+                  Explore Products
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-7 py-3.5 border border-white/25 text-white text-sm font-medium rounded-full hover:border-white/50 hover:bg-white/8 transition-all duration-200"
+                >
+                  Request Quote
+                </Link>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
             className={`rounded-full transition-all duration-300 ${
               index === current
-                ? 'bg-white w-8 sm:w-10 md:w-12 h-2.5 sm:h-3 shadow-glow'
-                : 'bg-white/40 hover:bg-white/60 w-2.5 sm:w-3 h-2.5 sm:h-3'
+                ? 'bg-white w-7 h-1.5'
+                : 'bg-white/30 hover:bg-white/50 w-1.5 h-1.5'
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`Slide ${index + 1}`}
           />
         ))}
+      </div>
+
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/15 bg-black/20 backdrop-blur-sm text-white hover:bg-black/40 hover:border-white/30 transition-all duration-200 flex items-center justify-center"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-4.5 h-4.5" />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/15 bg-black/20 backdrop-blur-sm text-white hover:bg-black/40 hover:border-white/30 transition-all duration-200 flex items-center justify-center"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-4.5 h-4.5" />
+      </button>
+
+      <div className="absolute bottom-8 right-5 sm:right-8 z-20 hidden sm:block">
+        <span className="text-white/35 text-xs tabular-nums tracking-widest">
+          {String(current + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
+        </span>
       </div>
     </div>
   );

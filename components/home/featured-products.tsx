@@ -26,23 +26,7 @@ interface FeaturedProductsProps {
   products: Product[];
 }
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 },
-};
-
 export function FeaturedProducts({ products }: FeaturedProductsProps) {
-  console.log('FeaturedProducts received:', products?.length, 'products');
   const displayProducts = products.slice(0, 4);
   const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
   const [selectedBrochure, setSelectedBrochure] = useState<{
@@ -54,157 +38,82 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
   const handleBrochureClick = (productId: string, productName: string) => {
     const product = displayProducts.find((p) => p.id === productId);
     if (product?.brochure_url) {
-      setSelectedBrochure({
-        url: product.brochure_url,
-        productId,
-        productName,
-      });
+      setSelectedBrochure({ url: product.brochure_url, productId, productName });
       setIsBrochureModalOpen(true);
     }
   };
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bS0yLTJ2Mmg0di0yaC00em0tNCAwYC0ydjJoMnYtMnptLTQgMGgtMnYyaDJ2LTJ6bS00IDBoLTJ2MmgydC0yem0tNC0ydjRoMnYtNGgtMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />
-
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full filter blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-400/10 rounded-full filter blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-
-      <div className="container mx-auto px-3 sm:px-4 md:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-12 sm:mb-16 md:mb-20"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-100 text-blue-700 text-xs sm:text-sm font-bold mb-4 sm:mb-6 shadow-lg"
+    <section className="py-20 sm:py-24 lg:py-32 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+          <div>
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.15em] mb-3">
+              Featured Products
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-gray-900 leading-tight tracking-tight">
+              Our Top-Performing<br className="hidden sm:block" /> Ventilation Systems
+            </h2>
+          </div>
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors whitespace-nowrap"
           >
-            <span className="flex w-2 h-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full w-2 h-2 bg-blue-500"></span>
-            </span>
-            Featured Products
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
-          >
-            <span className="bg-gradient-to-r from-industrial-900 via-industrial-800 to-industrial-900 bg-clip-text text-transparent">
-              Premium Industrial
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              Solutions
-            </span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.7 }}
-            className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4"
-          >
-            Discover our top-performing ventilation systems engineered for excellence and built to withstand the most demanding industrial environments
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mt-6 sm:mt-8"
-          >
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                <span className="text-base sm:text-lg">✓</span>
-              </div>
-              ISO Certified
-            </div>
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                <span className="text-base sm:text-lg">⚡</span>
-              </div>
-              Energy Efficient
-            </div>
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                <span className="text-base sm:text-lg">🛡️</span>
-              </div>
-              10+ Year Warranty
-            </div>
-          </motion.div>
-        </motion.div>
+            View all products
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
 
         {displayProducts.length > 0 ? (
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16"
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-14">
             {displayProducts.map((product, index) => (
-              <motion.div key={product.id} variants={item}>
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08, duration: 0.45 }}
+                className="h-full"
+              >
                 <ProductCard product={product} onBrochureClick={handleBrochureClick} />
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         ) : (
           <div className="text-center py-16">
-            <p className="text-xl text-gray-500">No featured products available at the moment.</p>
+            <p className="text-gray-400 text-sm">No featured products available.</p>
           </div>
         )}
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          className="relative"
+          transition={{ duration: 0.45 }}
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 py-7 px-7 sm:px-9 bg-white rounded-2xl border border-gray-200"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-2xl sm:rounded-3xl blur-xl" />
-          <div className="relative bg-gradient-to-br from-white to-blue-50/50 rounded-2xl sm:rounded-3xl border-2 border-blue-100/50 p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl backdrop-blur-sm">
-            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
-              <div className="text-center md:text-left">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-industrial-900 mb-2 sm:mb-3">
-                  Explore Our Complete Range
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
-                  Browse through our extensive catalog of industrial ventilation solutions tailored to your specific needs
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-end">
-                <Link
-                  href="/products"
-                  className="group relative inline-flex items-center justify-center gap-3 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    View All Products
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-blue-600 bg-white border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:shadow-xl hover:scale-105 transition-all duration-300"
-                >
-                  Get Custom Quote
-                </Link>
-              </div>
-            </div>
+          <div>
+            <h3 className="text-base font-bold text-gray-900 mb-0.5">
+              Looking for a custom solution?
+            </h3>
+            <p className="text-sm text-gray-500">
+              Browse our full catalog or contact us for tailored specifications
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2.5 flex-shrink-0">
+            <Link
+              href="/products"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-900 text-white text-sm font-semibold rounded-full hover:bg-gray-700 transition-colors"
+            >
+              All Products
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-5 py-2.5 border border-gray-200 text-gray-700 text-sm font-medium rounded-full hover:border-gray-400 transition-colors"
+            >
+              Get Custom Quote
+            </Link>
           </div>
         </motion.div>
       </div>

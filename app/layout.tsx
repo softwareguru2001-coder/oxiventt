@@ -4,8 +4,10 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   display: 'swap',
   preload: true,
+  variable: '--font-inter',
 });
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
@@ -79,16 +81,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" itemScope itemType="https://schema.org/WebPage">
+    <html lang="en" itemScope itemType="https://schema.org/WebPage" className={inter.variable}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_SUPABASE_URL} />
-        <meta name="theme-color" content="#1e3a8a" />
+        <meta name="theme-color" content="#0f172a" />
         <meta name="color-scheme" content="light" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );
 }

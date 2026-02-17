@@ -49,129 +49,108 @@ export function ProductCard({ product, onBrochureClick }: ProductCardProps) {
   const hasMultipleImages = product.images && product.images.length > 1;
 
   return (
-    <Link href={`/products/${product.slug}`}>
+    <Link href={`/products/${product.slug}`} className="block h-full">
       <motion.div
         onMouseEnter={() => {
           setIsHovered(true);
-          if (hasMultipleImages) {
-            setCurrentImageIndex(1);
-          }
+          if (hasMultipleImages) setCurrentImageIndex(1);
         }}
         onMouseLeave={() => {
           setIsHovered(false);
           setCurrentImageIndex(0);
         }}
-        whileHover={{ y: -8 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        className="group relative h-full overflow-hidden rounded-3xl bg-white border border-gray-200/50 transition-all duration-500 hover:shadow-premium hover:border-blue-300/50"
+        className="group relative h-full flex flex-col overflow-hidden rounded-2xl bg-white border border-gray-200 hover:border-gray-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.1)] transition-all duration-300"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-cyan-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-        <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50">
+        <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
           {product.images && product.images.length > 0 && product.images[0] ? (
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentImageIndex}
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: isHovered ? 1.08 : 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5 }}
-                className="h-full w-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0"
               >
                 <Image
                   src={product.images[currentImageIndex] || product.images[0]}
                   alt={product.name}
                   fill
-                  quality={85}
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  quality={80}
+                  className={`object-cover transition-transform duration-700 ${isHovered ? 'scale-105' : 'scale-100'}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   loading="lazy"
                 />
               </motion.div>
             </AnimatePresence>
           ) : (
-            <div className="flex items-center justify-center h-full">
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center shadow-inner">
-                  <span className="text-4xl">🌀</span>
-                </div>
-                <p className="text-sm font-semibold text-gray-400">No Image Available</p>
-              </div>
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+              <span className="text-gray-300 text-sm font-medium">No Image</span>
             </div>
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-          <motion.button
-            onClick={handleWhatsApp}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 p-3 sm:p-4 rounded-full bg-green-500 text-white shadow-xl hover:bg-green-600 hover:shadow-2xl transition-all duration-300 z-10"
-          >
-            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-          </motion.button>
-
-          {product.brochure_url && (
-            <motion.button
-              onClick={handleBrochureClick}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 px-3 py-2 sm:px-4 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-sm text-blue-600 shadow-xl hover:shadow-2xl transition-all duration-300 z-10 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold border border-blue-100"
-            >
-              <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              Brochure
-            </motion.button>
-          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
           {product.available_sizes && product.available_sizes.length > 0 && (
-            <div className="absolute top-3 right-3 sm:top-4 sm:right-4 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-sm shadow-lg border border-gray-100">
-              <span className="text-xs font-bold text-gray-700">
+            <div className="absolute top-3 left-3 px-2.5 py-1 bg-white/95 backdrop-blur-sm rounded-lg">
+              <span className="text-xs font-semibold text-gray-700">
                 {product.available_sizes.length} Sizes
               </span>
             </div>
           )}
+
+          <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-250 translate-y-1 group-hover:translate-y-0">
+            {product.brochure_url && (
+              <button
+                onClick={handleBrochureClick}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white text-gray-800 text-xs font-semibold shadow-lg hover:bg-gray-50 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Brochure
+              </button>
+            )}
+            <button
+              onClick={handleWhatsApp}
+              className="p-2 rounded-lg bg-green-500 text-white shadow-lg hover:bg-green-600 transition-colors"
+            >
+              <MessageCircle className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        <div className="relative p-4 sm:p-6 md:p-7">
-          <div className="mb-3 sm:mb-4">
-            <span className="inline-block px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs font-bold text-blue-600 bg-blue-50 rounded-lg mb-2 sm:mb-3 border border-blue-100">
-              {product.category || 'General'}
-            </span>
-            <h3 className="text-lg sm:text-xl font-bold text-industrial-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2 leading-tight">
-              {product.name}
-            </h3>
-          </div>
+        <div className="flex-1 flex flex-col p-5">
+          <span className="text-[0.67rem] font-bold text-gray-400 uppercase tracking-widest mb-2">
+            {product.category || 'General'}
+          </span>
+
+          <h3 className="text-[0.95rem] font-semibold text-gray-900 group-hover:text-gray-700 transition-colors leading-snug line-clamp-2 mb-2.5">
+            {product.name}
+          </h3>
 
           {product.short_description && (
-            <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 mb-4 sm:mb-5 leading-relaxed">
+            <p className="text-xs text-gray-500 line-clamp-2 mb-4 leading-relaxed flex-1">
               {product.short_description}
             </p>
           )}
 
-          <div className="flex items-center justify-between pt-4 sm:pt-5 border-t border-gray-100">
+          <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
             {product.is_price_visible && product.price ? (
               <div>
-                <p className="text-xs text-gray-500 mb-0.5 sm:mb-1 font-medium">Starting from</p>
-                <p className="text-lg sm:text-xl font-bold bg-gradient-to-r from-industrial-900 to-industrial-700 bg-clip-text text-transparent">
+                <p className="text-[0.62rem] text-gray-400 uppercase tracking-wider mb-0.5">From</p>
+                <p className="text-base font-bold text-gray-900">
                   ₹{Number(product.price).toLocaleString()}
                 </p>
               </div>
             ) : (
-              <p className="text-xs sm:text-sm font-bold text-gray-700">Contact for pricing</p>
+              <p className="text-xs text-gray-500">Contact for price</p>
             )}
 
-            <motion.div
-              animate={{ x: isHovered ? 4 : 0 }}
-              transition={{ duration: 0.3 }}
-              className="flex items-center gap-1.5 sm:gap-2 text-blue-600 font-bold text-xs sm:text-sm"
-            >
-              View
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.div>
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-700 group-hover:text-gray-900 group-hover:gap-2 transition-all duration-200">
+              View details
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
           </div>
         </div>
-
-        <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-gray-900/5 group-hover:ring-blue-500/30 transition-all duration-500" />
       </motion.div>
     </Link>
   );
