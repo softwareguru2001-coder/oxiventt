@@ -2,6 +2,14 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const lower = pathname.toLowerCase();
+  if (lower !== pathname && lower.startsWith('/admin')) {
+    const url = request.nextUrl.clone();
+    url.pathname = lower;
+    return NextResponse.redirect(url);
+  }
+
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -84,5 +92,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/Admin/:path*', '/ADMIN/:path*'],
 };
