@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { LayoutDashboard, Package, Users, Image as ImageIcon, Layers, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, Package, Users, Image as ImageIcon, Layers, ExternalLink, Search } from 'lucide-react';
 import { SignOutButton } from '@/components/auth/sign-out-button';
 import { AdminMobileNav } from '@/components/admin/admin-mobile-nav';
 
@@ -10,6 +10,7 @@ const navLinks = [
   { href: '/admin/categories', label: 'Categories', icon: Layers, iconName: 'Layers' },
   { href: '/admin/slides', label: 'Hero Slides', icon: ImageIcon, iconName: 'ImageIcon' },
   { href: '/admin/leads', label: 'Leads / CRM', icon: Users, iconName: 'Users' },
+  { href: '/admin/seo', label: 'SEO Settings', icon: Search, iconName: 'Search' },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

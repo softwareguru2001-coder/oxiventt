@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { Loader2, Plus, X, Upload, Trash2 } from 'lucide-react';
 import { CategoryForm } from './category-form';
+import { SeoFieldsPanel } from './seo-fields-panel';
 
 interface Category {
   id: string;
@@ -51,6 +52,10 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
   const [brochurePath, setBrochurePath] = useState(product?.brochure_path || '');
   const [brochureFile, setBrochureFile] = useState<File | null>(null);
   const [videoUrl, setVideoUrl] = useState(product?.video_url || '');
+
+  const [metaTitle, setMetaTitle] = useState(product?.meta_title || '');
+  const [metaDescription, setMetaDescription] = useState(product?.meta_description || '');
+  const [metaKeywords, setMetaKeywords] = useState<string[]>(product?.meta_keywords || []);
 
   const generateSlug = (text: string) => {
     return text
@@ -219,6 +224,9 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
         images: uploadedImages,
         brochure_path: uploadedBrochurePath || null,
         video_url: videoUrl || null,
+        meta_title: metaTitle || null,
+        meta_description: metaDescription || null,
+        meta_keywords: metaKeywords,
       };
 
       const endpoint = isEdit
@@ -552,6 +560,20 @@ export function ProductForm({ product, isEdit = false }: ProductFormProps) {
             <p className="text-sm text-gray-600 mt-2">{brochureFile.name}</p>
           )}
         </div>
+      </div>
+
+      <div className="bg-white rounded-lg border p-6 space-y-4">
+        <h2 className="text-xl font-bold">SEO</h2>
+        <SeoFieldsPanel
+          metaTitle={metaTitle}
+          metaDescription={metaDescription}
+          metaKeywords={metaKeywords}
+          onMetaTitleChange={setMetaTitle}
+          onMetaDescriptionChange={setMetaDescription}
+          onMetaKeywordsChange={setMetaKeywords}
+          titlePlaceholder={`e.g., ${name ? name.slice(0, 45) : 'Product Name'} - Industrial Fan | Brand`}
+          descriptionPlaceholder="e.g., High-performance industrial fan ideal for factories, warehouses, and HVAC. Available in multiple sizes."
+        />
       </div>
 
       {error && (

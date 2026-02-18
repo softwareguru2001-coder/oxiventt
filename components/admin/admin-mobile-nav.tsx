@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, LayoutDashboard, Package, Layers, Image as ImageIcon, Users } from 'lucide-react';
+import { Menu, X, LayoutDashboard, Package, Layers, Image as ImageIcon, Users, Search } from 'lucide-react';
 import { SignOutButton } from '@/components/auth/sign-out-button';
 
 interface NavLink {
@@ -17,6 +17,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Layers,
   ImageIcon,
   Users,
+  Search,
 };
 
 export function AdminMobileNav({ navLinks }: { navLinks: NavLink[] }) {

@@ -41,30 +41,37 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
     const productData = product as any;
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
-    const title = `${productData.name} - Industrial Fan | Oxiventt`;
-    const description = productData.description
-      ? productData.description.substring(0, 155)
-      : `High-quality ${productData.name} for industrial ventilation. Available in various sizes and specifications. Contact us for custom solutions and quotations.`;
+
+    const title = productData.meta_title ||
+      `${productData.name} - Industrial Fan | Oxiventt`;
+
+    const description = productData.meta_description ||
+      (productData.description
+        ? productData.description.substring(0, 155)
+        : `High-quality ${productData.name} for industrial ventilation. Available in various sizes and specifications. Contact us for custom solutions and quotations.`);
+
+    const keywords = productData.meta_keywords?.length
+      ? productData.meta_keywords
+      : [
+          productData.name,
+          `${productData.name} specifications`,
+          productData.category,
+          'industrial fan',
+          'exhaust fan',
+          'ventilation solution',
+          'India',
+        ];
+
     const image = productData.images && productData.images.length > 0
       ? productData.images[0]
       : `${baseUrl}/oxiventt.png`;
-
-    const keywords = [
-      productData.name,
-      `${productData.name} specifications`,
-      productData.category,
-      'industrial fan',
-      'exhaust fan',
-      'ventilation solution',
-      'India',
-    ];
 
     return {
       title,
       description,
       keywords,
       openGraph: {
-        title: `${productData.name} - Premium Industrial Ventilation`,
+        title,
         description,
         type: 'website',
         url: `${baseUrl}/products/${slug}`,

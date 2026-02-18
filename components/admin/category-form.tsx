@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
+import { SeoFieldsPanel } from './seo-fields-panel';
 
 interface Category {
   id: string;
@@ -14,6 +15,9 @@ interface Category {
   description: string | null;
   display_order: number;
   is_active: boolean;
+  meta_title?: string | null;
+  meta_description?: string | null;
+  meta_keywords?: string[];
 }
 
 interface CategoryFormProps {
@@ -35,6 +39,10 @@ export function CategoryForm({ category, isModal = false, onSuccess, onCancel }:
     is_active: category?.is_active ?? true,
   });
 
+  const [metaTitle, setMetaTitle] = useState(category?.meta_title || '');
+  const [metaDescription, setMetaDescription] = useState(category?.meta_description || '');
+  const [metaKeywords, setMetaKeywords] = useState<string[]>(category?.meta_keywords || []);
+
   useEffect(() => {
     if (category) {
       setFormData({
@@ -43,6 +51,9 @@ export function CategoryForm({ category, isModal = false, onSuccess, onCancel }:
         display_order: category.display_order,
         is_active: category.is_active,
       });
+      setMetaTitle(category.meta_title || '');
+      setMetaDescription(category.meta_description || '');
+      setMetaKeywords(category.meta_keywords || []);
     }
   }, [category]);
 
@@ -58,35 +69,31 @@ export function CategoryForm({ category, isModal = false, onSuccess, onCancel }:
 
       const method = category ? 'PUT' : 'POST';
 
-      console.log('Submitting category:', { url, method, formData });
-
       const response = await fetch(url, {
         method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          meta_title: metaTitle || null,
+          meta_description: metaDescription || null,
+          meta_keywords: metaKeywords,
+        }),
       });
 
-      console.log('Response status:', response.status);
-
       const data = await response.json();
-      console.log('Response data:', data);
 
       if (!response.ok) {
         throw new Error(data.error || 'Failed to save category');
       }
 
       if (isModal && onSuccess) {
-        console.log('Calling onSuccess with category:', data.category);
         onSuccess(data.category);
       } else {
         router.push('/admin/categories');
         router.refresh();
       }
     } catch (err) {
-      console.error('Error saving category:', err);
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setIsLoading(false);
@@ -150,9 +157,7 @@ export function CategoryForm({ category, isModal = false, onSuccess, onCancel }:
           placeholder="0"
           disabled={isLoading}
         />
-        <p className="text-sm text-gray-500 mt-1">
-          Lower numbers appear first
-        </p>
+        <p className="text-sm text-gray-500 mt-1">Lower numbers appear first</p>
       </div>
 
       <div className="flex items-center">
@@ -169,6 +174,19 @@ export function CategoryForm({ category, isModal = false, onSuccess, onCancel }:
         </label>
       </div>
 
+      {!isModal && (
+        <SeoFieldsPanel
+          metaTitle={metaTitle}
+          metaDescription={metaDescription}
+          metaKeywords={metaKeywords}
+          onMetaTitleChange={setMetaTitle}
+          onMetaDescriptionChange={setMetaDescription}
+          onMetaKeywordsChange={setMetaKeywords}
+          titlePlaceholder={`e.g., ${formData.name ? formData.name.slice(0, 40) : 'Category Name'} - Industrial Fans | Brand`}
+          descriptionPlaceholder="e.g., Browse our range of axial fans for industrial ventilation. High efficiency, multiple sizes available."
+        />
+      )}
+
       <div className="flex justify-end space-x-3 pt-4">
         <Button
           type="button"
@@ -178,10 +196,7 @@ export function CategoryForm({ category, isModal = false, onSuccess, onCancel }:
         >
           Cancel
         </Button>
-        <Button
-          type="submit"
-          disabled={isLoading}
-        >
+        <Button type="submit" disabled={isLoading}>
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
