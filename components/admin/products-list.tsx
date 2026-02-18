@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Edit2, Trash2, Star, ExternalLink } from 'lucide-react';
+import { Edit2, Trash2, Star, ExternalLink, ChevronRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 
@@ -43,7 +43,58 @@ export function ProductsList({ products }: ProductsListProps) {
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="overflow-x-auto">
+      {/* Mobile card list */}
+      <div className="sm:hidden divide-y divide-gray-100">
+        {products.map((product) => (
+          <div key={product.id} className="flex items-center gap-3 px-4 py-3.5">
+            {product.images && product.images.length > 0 ? (
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className="w-12 h-12 object-cover rounded-lg border border-gray-100 flex-shrink-0"
+              />
+            ) : (
+              <div className="w-12 h-12 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center flex-shrink-0">
+                <span className="text-gray-300 text-[0.6rem] font-medium">No img</span>
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <p className="font-semibold text-gray-900 text-sm truncate">{product.name}</p>
+                {product.featured && <Star className="w-3 h-3 fill-amber-400 text-amber-400 flex-shrink-0" />}
+              </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100 font-medium">
+                  {product.category || 'general'}
+                </span>
+                {product.is_price_visible && product.price ? (
+                  <span className="text-xs font-semibold text-gray-700">₹{Number(product.price).toLocaleString()}</span>
+                ) : (
+                  <span className="text-xs text-gray-400">On request</span>
+                )}
+              </div>
+            </div>
+            <div className="flex items-center gap-1 flex-shrink-0">
+              <Link
+                href={`/admin/products/${product.id}`}
+                className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+              >
+                <Edit2 className="w-4 h-4" />
+              </Link>
+              <button
+                onClick={() => handleDelete(product.id, product.name)}
+                disabled={deletingProductId === product.id}
+                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-40"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop table */}
+      <div className="hidden sm:block overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
