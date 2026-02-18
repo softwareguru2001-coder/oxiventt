@@ -437,81 +437,138 @@ export function LeadsDashboard({ leads: initialLeads, products }: LeadsDashboard
           <p className="text-gray-400 text-sm">{hasActiveFilters ? 'No leads match your filters.' : 'No leads yet.'}</p>
         </div>
       ) : (
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-gray-50 border-b border-gray-100">
-                  {['Date', 'Lead', 'Contact', 'Product', 'Status', 'Next Call', 'Notes', ''].map((h) => (
-                    <th key={h} className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide whitespace-nowrap">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50">
-                {filteredLeads.map((lead) => {
-                  const statusCfg = getStatusConfig(lead.status || 'new');
-                  const isOverdue = lead.next_call_date && isBefore(parseISO(lead.next_call_date), new Date()) && lead.status !== 'sale_done' && lead.status !== 'lost';
-                  const isCallToday = lead.next_call_date && isToday(parseISO(lead.next_call_date));
-                  return (
-                    <tr key={lead.id} className="hover:bg-gray-50/70 transition-colors">
-                      <td className="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">
-                        {format(new Date(lead.created_at), 'MMM d')}
-                        <br />
-                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[0.6rem] font-medium border mt-1 ${TYPE_COLORS[lead.type] || 'bg-gray-100 text-gray-600'}`}>
-                          {lead.type}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 min-w-[120px]">
-                        <p className="font-semibold text-gray-900">{lead.name || 'Unknown'}</p>
-                        {lead.company && <p className="text-xs text-gray-400">{lead.company}</p>}
-                        {lead.city && <p className="text-xs text-gray-400">{lead.city}</p>}
-                      </td>
-                      <td className="px-4 py-3 min-w-[130px]">
-                        <a href={`tel:${lead.mobile}`} className="text-gray-700 hover:text-blue-600 font-mono text-xs block">{lead.mobile}</a>
-                        {lead.email && <a href={`mailto:${lead.email}`} className="text-gray-400 hover:text-blue-600 text-xs block truncate max-w-[130px]">{lead.email}</a>}
-                      </td>
-                      <td className="px-4 py-3 text-xs text-gray-500 max-w-[120px] truncate">{lead.products?.name || '-'}</td>
-                      <td className="px-4 py-3">
-                        <select
-                          value={lead.status || 'new'}
-                          onChange={(e) => handleStatusChange(lead.id, e.target.value)}
-                          className={`text-xs font-semibold px-2 py-1 rounded-lg border cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 ${statusCfg.color}`}
-                        >
-                          {STATUS_OPTIONS.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
-                        </select>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        {lead.next_call_date ? (
-                          <span className={`text-xs font-medium px-2 py-1 rounded-lg ${isOverdue ? 'bg-red-100 text-red-700' : isCallToday ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-600'}`}>
-                            {format(parseISO(lead.next_call_date), 'MMM d')}
-                          </span>
-                        ) : <span className="text-gray-300 text-xs">—</span>}
-                      </td>
-                      <td className="px-4 py-3 max-w-[140px]">
-                        {lead.notes ? <p className="text-xs text-gray-500 truncate">{lead.notes}</p> : <span className="text-gray-300 text-xs">—</span>}
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center justify-end gap-1">
-                          <button onClick={() => setSelectedLead(lead)} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
-                            <Edit3 className="w-3.5 h-3.5" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(lead.id)}
-                            disabled={deletingLeadId === lead.id}
-                            className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-40"
-                            title="Delete"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+        <>
+          {/* Mobile card view */}
+          <div className="sm:hidden space-y-3">
+            {filteredLeads.map((lead) => {
+              const statusCfg = getStatusConfig(lead.status || 'new');
+              const isOverdue = lead.next_call_date && isBefore(parseISO(lead.next_call_date), new Date()) && lead.status !== 'sale_done' && lead.status !== 'lost';
+              const isCallToday = lead.next_call_date && isToday(parseISO(lead.next_call_date));
+              return (
+                <div key={lead.id} className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="min-w-0">
+                      <p className="font-semibold text-gray-900 truncate">{lead.name || 'Unknown'}</p>
+                      <p className="text-xs text-gray-400">{lead.company ? `${lead.company} · ` : ''}{format(new Date(lead.created_at), 'MMM d')}</p>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <span className={`text-[0.65rem] px-1.5 py-0.5 rounded font-medium border ${TYPE_COLORS[lead.type] || 'bg-gray-100 text-gray-600'}`}>{lead.type}</span>
+                      <span className={`text-[0.65rem] px-1.5 py-0.5 rounded-full font-semibold ${statusCfg.color}`}>{statusCfg.label}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 mb-3">
+                    <a href={`tel:${lead.mobile}`} className="flex items-center gap-1.5 text-sm text-gray-700 font-medium">
+                      <Phone className="w-3.5 h-3.5 text-gray-400" />{lead.mobile}
+                    </a>
+                    {lead.next_call_date && (
+                      <span className={`flex items-center gap-1 text-xs font-medium ${isOverdue ? 'text-red-600' : isCallToday ? 'text-amber-600' : 'text-gray-500'}`}>
+                        <Calendar className="w-3 h-3" />{format(parseISO(lead.next_call_date), 'MMM d')}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2 pt-3 border-t border-gray-100">
+                    <button
+                      onClick={() => setSelectedLead(lead)}
+                      className="flex-1 py-2 text-center text-sm font-medium text-blue-600 bg-blue-50 rounded-lg active:bg-blue-100"
+                    >
+                      View Details
+                    </button>
+                    <a
+                      href={`tel:${lead.mobile}`}
+                      className="p-2 text-gray-500 bg-gray-100 rounded-lg active:bg-gray-200"
+                    >
+                      <Phone className="w-4 h-4" />
+                    </a>
+                    <button
+                      onClick={() => handleDelete(lead.id)}
+                      disabled={deletingLeadId === lead.id}
+                      className="p-2 text-gray-400 bg-gray-100 rounded-lg active:bg-red-50 active:text-red-600 disabled:opacity-40"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
+
+          {/* Desktop table view */}
+          <div className="hidden sm:block bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 border-b border-gray-100">
+                    {['Date', 'Lead', 'Contact', 'Product', 'Status', 'Next Call', 'Notes', ''].map((h) => (
+                      <th key={h} className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide whitespace-nowrap">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
+                  {filteredLeads.map((lead) => {
+                    const statusCfg = getStatusConfig(lead.status || 'new');
+                    const isOverdue = lead.next_call_date && isBefore(parseISO(lead.next_call_date), new Date()) && lead.status !== 'sale_done' && lead.status !== 'lost';
+                    const isCallToday = lead.next_call_date && isToday(parseISO(lead.next_call_date));
+                    return (
+                      <tr key={lead.id} className="hover:bg-gray-50/70 transition-colors">
+                        <td className="px-4 py-3 text-gray-400 text-xs whitespace-nowrap">
+                          {format(new Date(lead.created_at), 'MMM d')}
+                          <br />
+                          <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[0.6rem] font-medium border mt-1 ${TYPE_COLORS[lead.type] || 'bg-gray-100 text-gray-600'}`}>
+                            {lead.type}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 min-w-[120px]">
+                          <p className="font-semibold text-gray-900">{lead.name || 'Unknown'}</p>
+                          {lead.company && <p className="text-xs text-gray-400">{lead.company}</p>}
+                          {lead.city && <p className="text-xs text-gray-400">{lead.city}</p>}
+                        </td>
+                        <td className="px-4 py-3 min-w-[130px]">
+                          <a href={`tel:${lead.mobile}`} className="text-gray-700 hover:text-blue-600 font-mono text-xs block">{lead.mobile}</a>
+                          {lead.email && <a href={`mailto:${lead.email}`} className="text-gray-400 hover:text-blue-600 text-xs block truncate max-w-[130px]">{lead.email}</a>}
+                        </td>
+                        <td className="px-4 py-3 text-xs text-gray-500 max-w-[120px] truncate">{lead.products?.name || '-'}</td>
+                        <td className="px-4 py-3">
+                          <select
+                            value={lead.status || 'new'}
+                            onChange={(e) => handleStatusChange(lead.id, e.target.value)}
+                            className={`text-xs font-semibold px-2 py-1 rounded-lg border cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 ${statusCfg.color}`}
+                          >
+                            {STATUS_OPTIONS.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
+                          </select>
+                        </td>
+                        <td className="px-4 py-3 whitespace-nowrap">
+                          {lead.next_call_date ? (
+                            <span className={`text-xs font-medium px-2 py-1 rounded-lg ${isOverdue ? 'bg-red-100 text-red-700' : isCallToday ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-600'}`}>
+                              {format(parseISO(lead.next_call_date), 'MMM d')}
+                            </span>
+                          ) : <span className="text-gray-300 text-xs">—</span>}
+                        </td>
+                        <td className="px-4 py-3 max-w-[140px]">
+                          {lead.notes ? <p className="text-xs text-gray-500 truncate">{lead.notes}</p> : <span className="text-gray-300 text-xs">—</span>}
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center justify-end gap-1">
+                            <button onClick={() => setSelectedLead(lead)} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
+                              <Edit3 className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              onClick={() => handleDelete(lead.id)}
+                              disabled={deletingLeadId === lead.id}
+                              className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-40"
+                              title="Delete"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
       )}
 
       {selectedLead && (
