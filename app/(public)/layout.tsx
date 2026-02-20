@@ -10,13 +10,16 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, Phone, ChevronRight } from 'lucide-react';
 
 function Header() {
+  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const { openQuoteModal } = useQuoteModal();
 
   useEffect(() => {
+    setMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -43,7 +46,7 @@ function Header() {
       <header className="fixed top-1.5 inset-x-0 z-50 px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4">
         <div
           className={`max-w-6xl mx-auto transition-all duration-300 ${
-            scrolled
+            mounted && scrolled
               ? 'bg-white/95 backdrop-blur-lg shadow-lg shadow-black/5'
               : 'bg-white/90 backdrop-blur-sm'
           } rounded-full border border-gray-200/60`}
