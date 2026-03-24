@@ -13,8 +13,9 @@ export function CertificationCards() {
       </div>
       <div className="flex flex-wrap justify-center items-stretch gap-4 sm:gap-6">
         <button
+          type="button"
           onClick={() => window.open('/iso.pdf', '_blank', 'noopener,noreferrer')}
-          className="group relative flex items-center gap-4 sm:gap-5 px-5 sm:px-6 py-4 sm:py-5 rounded-xl bg-white border-2 border-blue-200 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-[260px]"
+          className="group relative flex items-center gap-4 sm:gap-5 px-5 sm:px-6 py-4 sm:py-5 rounded-xl bg-white border-2 border-blue-200 hover:border-blue-400 hover:shadow-2xl active:shadow-lg active:scale-95 transition-all duration-300 hover:-translate-y-1 min-w-[260px] cursor-pointer"
           aria-label="View ISO 27001 Certificate"
         >
           <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 p-1 shadow-xl flex-shrink-0">
@@ -33,8 +34,9 @@ export function CertificationCards() {
           </div>
         </button>
         <button
+          type="button"
           onClick={() => window.open('/startupind.pdf', '_blank', 'noopener,noreferrer')}
-          className="group relative flex items-center gap-4 sm:gap-5 px-5 sm:px-6 py-4 sm:py-5 rounded-xl bg-white border-2 border-orange-200 hover:border-orange-400 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-[260px] cursor-pointer"
+          className="group relative flex items-center gap-4 sm:gap-5 px-5 sm:px-6 py-4 sm:py-5 rounded-xl bg-white border-2 border-orange-200 hover:border-orange-400 hover:shadow-2xl active:shadow-lg active:scale-95 transition-all duration-300 hover:-translate-y-1 min-w-[260px] cursor-pointer"
           aria-label="View Startup India Certificate"
         >
           <div className="w-20 h-14 sm:w-24 sm:h-16 bg-white rounded-lg flex items-center justify-center p-2 shadow-xl flex-shrink-0">
