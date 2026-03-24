@@ -69,10 +69,12 @@ export function Certifications() {
             </div>
           </motion.button>
 
-          <motion.div
+          <motion.button
+            onClick={() => window.open('/startupind.pdf', '_blank', 'noopener,noreferrer')}
             whileHover={{ scale: 1.02, y: -2 }}
-            className="group relative flex items-center gap-5 px-6 sm:px-8 py-5 sm:py-6 rounded-2xl bg-white/5 backdrop-blur-md border-2 border-white/10 hover:border-orange-400/40 hover:bg-white/10 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-orange-500/10 min-w-[280px] sm:min-w-[320px]"
-            aria-label="Startup India Certificate"
+            whileTap={{ scale: 0.98 }}
+            className="group relative flex items-center gap-5 px-6 sm:px-8 py-5 sm:py-6 rounded-2xl bg-white/5 backdrop-blur-md border-2 border-white/10 hover:border-orange-400/40 hover:bg-white/10 transition-all duration-300 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-orange-500/10 min-w-[280px] sm:min-w-[320px]"
+            aria-label="View Startup India Certificate"
           >
             <div className="w-24 h-16 sm:w-28 sm:h-18 bg-white rounded-xl flex items-center justify-center p-2.5 shadow-2xl flex-shrink-0">
               <img
@@ -85,8 +87,11 @@ export function Certifications() {
               <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-orange-300 transition-colors">
                 Startup India
               </h3>
+              <p className="text-xs sm:text-sm text-white/50 group-hover:text-white/70 transition-colors">
+                Click to view certificate
+              </p>
             </div>
-          </motion.div>
+          </motion.button>
         </motion.div>
       </div>
 
