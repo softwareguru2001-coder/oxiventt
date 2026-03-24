@@ -32,9 +32,10 @@ export function CertificationCards() {
             </p>
           </div>
         </button>
-        <div
-          className="group relative flex items-center gap-4 sm:gap-5 px-5 sm:px-6 py-4 sm:py-5 rounded-xl bg-white border-2 border-orange-200 hover:border-orange-400 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-[260px]"
-          aria-label="Startup India Certificate"
+        <button
+          onClick={() => window.open('/startupind.pdf', '_blank', 'noopener,noreferrer')}
+          className="group relative flex items-center gap-4 sm:gap-5 px-5 sm:px-6 py-4 sm:py-5 rounded-xl bg-white border-2 border-orange-200 hover:border-orange-400 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-[260px] cursor-pointer"
+          aria-label="View Startup India Certificate"
         >
           <div className="w-20 h-14 sm:w-24 sm:h-16 bg-white rounded-lg flex items-center justify-center p-2 shadow-xl flex-shrink-0">
             <img
@@ -44,9 +45,12 @@ export function CertificationCards() {
             />
           </div>
           <div className="text-left flex-1">
-            <h3 className="text-base sm:text-lg font-bold text-industrial-900">Startup India</h3>
+            <h3 className="text-base sm:text-lg font-bold text-industrial-900 mb-1">Startup India</h3>
+            <p className="text-xs text-orange-600 group-hover:text-orange-700 transition-colors">
+              Click to view
+            </p>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );
